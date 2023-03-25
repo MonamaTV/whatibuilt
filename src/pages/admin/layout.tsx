@@ -8,8 +8,6 @@ import { PropsWithChildren, useState } from "react";
 import Nav from "@/components/Nav";
 import { supabase } from "@/utils/supabase";
 import path from "path";
-import { randomUUID } from "crypto";
-import { axiosClient } from "@/utils/axios";
 import { updateUser } from "@/services/user";
 import { useMutation } from "@tanstack/react-query";
 import { User } from "@prisma/client";

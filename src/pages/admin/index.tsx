@@ -17,10 +17,10 @@ const Dashboard = ({ user }: { user: User }) => {
     mutationFn: (user: Partial<User>) => {
       return updateUser(user);
     },
-    onError: (error, vars, ctx) => {
+    onError: () => {
       ToastError("Failed to update your details");
     },
-    onSuccess: (data, vars) => {
+    onSuccess: () => {
       ToastSuccess("Updated your details");
     },
     onSettled: () => {
