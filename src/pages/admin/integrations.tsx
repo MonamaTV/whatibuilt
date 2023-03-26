@@ -5,10 +5,10 @@ import React from "react";
 const Integrations = () => {
   return (
     <div className="md:w-[60%] w-full space-y-3">
-      <h3 className="text-2xl text-gray-500 dark:text-rose-100 font-serif my-2">
+      <h3 className="text-2xl text-zinc-800 dark:text-rose-100 font-serif my-2">
         Integrations
       </h3>
-      <p className="dark:text-gray-100 text-gray-600 text-sm">
+      <p className="dark:text-gray-100 text-zinc-700 text-sm">
         Now you can only integrate your YouTube channel, Twitch and GitHub
         accounts
       </p>

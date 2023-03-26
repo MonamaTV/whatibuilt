@@ -87,15 +87,15 @@ const Socials = ({ socialAccounts }: { socialAccounts: Social[] }) => {
 
   return (
     <div className="md:w-[60%] w-full space-y-1">
-      <h3 className="text-2xl text-gray-500 dark:text-rose-100 font-serif my-2">
+      <h3 className="text-2xl text-zinc-800 dark:text-zinc-100 font-serif my-2">
         Socials
       </h3>
-      <p className="dark:text-gray-100 text-gray-600 text-sm">
-        Share your social accounts for folks to reach out to
+      <p className="dark:text-zinc-100 text-zinc-700 text-sm">
+        Share your social accounts for folks to connect with you
       </p>
       <select
         onChange={handleSelectInput}
-        className=" dark:bg-zinc-600 text-gray-900  focus:ring-rose-50/10 focus:dark:bg-zinc-600 block w-full dark:dark:bg-zinc-600  dark:placeholder-gray-400 dark:text-white dark:focus:ring-rose-50/10 dark:focus:dark:bg-zinc-600 py-2 px-3 outline-none border border-zinc-600 dark:border-none text-sm"
+        className=" dark:bg-zinc-600 text-zinc-900  focus:ring-rose-50/10 focus:dark:bg-zinc-600 block w-full dark:dark:bg-zinc-600  dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-50/10 dark:focus:dark:bg-zinc-600 py-2 px-3 outline-none border border-zinc-300 dark:border-none text-sm"
       >
         <option value={"-1"}>Select</option>
         {data.map(({ name, value, id }) => (
@@ -109,7 +109,7 @@ const Socials = ({ socialAccounts }: { socialAccounts: Social[] }) => {
         onChange={handleUrlInput}
         type={"url"}
         required
-        className="w-full mb-2 px-4 py-2 text-sm dark:bg-zinc-600 outline-none dark:border-none border border-zinc-600 dark:text-gray-100"
+        className="w-full mb-2 px-4 py-2 text-sm dark:bg-zinc-600 outline-none dark:border-none border border-zinc-300 dark:text-zinc-100"
         placeholder="Paste here..."
       />
       {error ? <p className="text-red-600 text-xs my-1">{error}</p> : null}
@@ -117,7 +117,7 @@ const Socials = ({ socialAccounts }: { socialAccounts: Social[] }) => {
       <button
         onClick={handleAddSocial}
         disabled={loadingButton}
-        className="disabled:bg-zinc-800 disabled:text-zinc-600 disabled:cursor-not-allowed px-3 py-2 capitalize text-sm  bg-primary  w-44 text-gray-900"
+        className="disabled:bg-zinc-800 disabled:text-zinc-600 disabled:cursor-not-allowed px-3 py-2 capitalize text-sm  bg-primary  md:w-44 w-full text-zinc-900"
       >
         Add link
       </button>
@@ -126,15 +126,17 @@ const Socials = ({ socialAccounts }: { socialAccounts: Social[] }) => {
 
       {addedSocials.length > 0 && (
         <>
-          <h4 className="text-xl text-gray-500 dark:text-rose-100 font-serif my-2">
+          <h4 className="text-xl text-zinc-800 dark:text-rose-100 font-serif my-2">
             Added
           </h4>
-          <p className="text-sm text-white">Click if you want to remove</p>
+          <p className="text-sm dark:text-zinc-100 text-zinc-700">
+            Click if you want to remove
+          </p>
           {addedSocials.map((social) => (
             <button
               key={social.id}
               onClick={(e) => handleRemoveSocial(e, social.id!)}
-              className="border disabled:bg-zinc-800 disabled:text-zinc-600 disabled:cursor-not-allowed border-zinc-50 text-zinc-100 w-full px-3 py-2"
+              className="border disabled:bg-zinc-800 disabled:text-zinc-600 disabled:cursor-not-allowed dark:border-zinc-50 text-zinc-100 w-full px-3 py-2 bg-background"
             >
               {socials.find((soc) => soc.value === social.name)?.name}
             </button>

@@ -20,14 +20,14 @@ const UserForm = ({ handleSubmit, user, state }: FormProps) => {
         <Form className="space-y-3">
           <Field
             name="name"
-            className="w-full  px-3 py-2 dark:bg-zinc-600 outline-none border dark:border-none text-sm dark:text-gray-100 text-gray-700 border-zinc-300"
+            className="w-full  px-3 py-2 dark:bg-zinc-600 outline-none border dark:border-none text-sm dark:text-zinc-100 text-zinc-700 border-zinc-300"
           />
           {errors.name && touched.name ? (
             <p className="text-red-600 text-sm">{errors.name}</p>
           ) : null}
           <Field
             name="role"
-            className="w-full  px-3 py-2 dark:bg-zinc-600 outline-none border dark:border-none text-sm dark:text-gray-100 text-gray-700 border-zinc-300"
+            className="w-full  px-3 py-2 dark:bg-zinc-600 outline-none border dark:border-none text-sm dark:text-zinc-100 text-zinc-700 border-zinc-300"
           />
           {errors.role && touched.role ? (
             <p className="text-red-600 text-sm">{errors.role}</p>
@@ -36,14 +36,14 @@ const UserForm = ({ handleSubmit, user, state }: FormProps) => {
             name="bio"
             rows={10}
             as="textarea"
-            className="w-full border-zinc-300 px-3 py-3 dark:bg-zinc-600 resize-none outline-none border dark:border-none text-sm dark:text-gray-100 text-gray-700 focus:peer-disabled:block peer "
+            className="w-full border-zinc-300 px-3 py-3 dark:bg-zinc-600 resize-none outline-none border dark:border-none text-sm dark:text-zinc-100 text-zinc-700 focus:peer-disabled:block peer "
           />
           {errors.bio && touched.bio ? (
             <p className="text-red-600 text-sm">{errors.bio}</p>
           ) : null}
           <button
             disabled={!dirty || state}
-            className="text-gray-900 px-3 py-2 capitalize text-sm bg-primary  w-44 disabled:bg-zinc-800 disabled:text-zinc-600 disabled:cursor-not-allowed"
+            className="text-zinc-900 px-3 py-2 capitalize text-sm bg-primary  w-44 disabled:bg-zinc-800 disabled:text-zinc-600 disabled:cursor-not-allowed"
             type="submit"
           >
             Save

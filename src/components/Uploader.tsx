@@ -84,7 +84,7 @@ const Uploader = ({
             <Image src={fileUrl ?? ""} width="300" height={"300"} alt="Image" />
             <button
               onClick={handleUpload}
-              className="bg-primary text-white px-3 py-2 w-[300px] text-center md:w-1/3 disabled:bg-zinc-800 disabled:text-zinc-600 disabled:cursor-not-allowed"
+              className="bg-primary text-zinc-900 px-3 py-2 w-[300px] text-center md:w-1/3 disabled:bg-zinc-800 disabled:text-zinc-600 disabled:cursor-not-allowed"
             >
               Upload
             </button>
