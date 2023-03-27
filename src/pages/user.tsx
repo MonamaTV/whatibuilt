@@ -1,3 +1,4 @@
+import YouTubeLoader from "@/components/Loaders/YouTubeLoader";
 import { useScroll } from "@/hooks/useScroll";
 import Image from "next/image";
 import Link from "next/link";
@@ -111,23 +112,7 @@ const User = () => {
               eius?
             </p>
           </div>
-          <div className="w-full">
-            <h2 className="text-2xl text-gray-500 dark:text-rose-100 font-serif my-2">
-              YouTube
-            </h2>
-            <div
-              ref={scroll}
-              className="flex flex-row overflow-x-hidden gap-x-2 w-full"
-            >
-              <div className="w-48 h-32 flex-shrink-0 bg-primary "></div>
-              <div className="w-48 h-32 flex-shrink-0 bg-primary "></div>
-              <div className="w-48 h-32 flex-shrink-0 bg-primary "></div>
-              <div className="w-48 h-32 flex-shrink-0 bg-primary "></div>
-
-              <div className="w-48 h-32 flex-shrink-0 bg-primary "></div>
-              <div className="w-48 h-32 flex-shrink-0 bg-primary "></div>
-            </div>
-          </div>
+          <YouTubeLoader />
           <div className="w-full">
             <h2 className="text-2xl text-gray-500 dark:text-rose-100 font-serif my-2">
               Twitch

@@ -1,14 +1,15 @@
 import TwitchContent from "@/components/TwitchContent";
 import YouTubeContent from "@/components/YouTubeContent";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
-import { youtubeTokenClient } from "@/utils/axios";
+import { Channels } from "@prisma/client";
 import { GetServerSidePropsContext } from "next";
 import { getServerSession } from "next-auth";
 import React from "react";
-
-const Integrations = () => {
+import prisma from "../../../utils/prisma";
+const Integrations = ({ channels }: { channels: Channels }) => {
+  console.log(channels);
   return (
-    <div className="md:w-[60%] w-full space-y-3">
+    <div className="md:w-[70%] w-full space-y-3">
       <h3 className="text-2xl text-zinc-800 dark:text-rose-100 font-serif my-2">
         Integrations
       </h3>
@@ -24,12 +25,14 @@ const Integrations = () => {
         >
           Connect Your Twitch
         </a>
-        <a
-          href="/api/youtube"
-          className="px-3 py-2 capitalize text-sm  bg-red-700 text-gray-100 w-full text-center"
-        >
-          Connect Your YouTube channel
-        </a>
+        {!channels?.youtubeId && (
+          <a
+            href="/api/youtube"
+            className="px-3 py-2 capitalize text-sm  bg-red-700 text-gray-100 w-full text-center"
+          >
+            Connect Your YouTube channel
+          </a>
+        )}
         <a
           href="#"
           className="text-center px-3 py-2 capitalize text-sm  bg-zinc-600 text-gray-100 w-full "
@@ -37,7 +40,7 @@ const Integrations = () => {
           Connect Your GitHub account
         </a>
       </div>
-      <YouTubeContent />
+      <YouTubeContent channelId={channels?.youtubeId} />
       <TwitchContent />
 
       {/* Connected content */}
@@ -57,8 +60,14 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       return { redirect: { destination: "/auth/login", permanent: false } };
     }
 
+    const channels = await prisma.channels.findUnique({
+      where: {
+        userID: session?.user?.id,
+      },
+    });
+
     return {
-      props: { data: [] },
+      props: { channels },
     };
   } catch (error: any) {
     if (error.response) {

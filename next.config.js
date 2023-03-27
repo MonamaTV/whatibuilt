@@ -18,6 +18,11 @@ const nextConfig = {
         hostname: "pegmpwlszhifrxsvhfbs.supabase.co",
         pathname: "*/**",
       },
+      {
+        protocol: "https",
+        hostname: "*.ytimg.com",
+        pathname: "*/**",
+      },
     ],
   },
 };

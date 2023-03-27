@@ -1,5 +1,6 @@
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { youtubeClient, youtubeTokenClient } from "@/utils/axios";
+import prisma from "@/utils/prisma";
 import { GetServerSidePropsContext } from "next";
 import { getServerSession } from "next-auth";
 import React from "react";
@@ -38,23 +39,39 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       return { redirect: { destination: "/auth/login", permanent: false } };
     }
 
-    if (code) {
-      const { data } = await youtubeTokenClient().post("", {
-        code: code,
-        client_id: process.env.GOOGLE_CLIENT_ID,
-        client_secret: process.env.GOOGLE_CLIENT_SECRET,
-        grant_type: "authorization_code",
-        redirect_uri: process.env.GOOGLE_REDIRECT_URI,
-      });
+    if (!code) {
+      return {
+        redirect: { destination: "/admin/integrations", permanent: false },
+      };
+    }
 
-      const { access_token } = data;
-      const { data: youtubeData } = await youtubeClient().get("", {
-        headers: {
-          Authorization: "Bearer " + access_token,
-        },
-      });
+    const { data } = await youtubeTokenClient().post("", {
+      code: code,
+      client_id: process.env.GOOGLE_CLIENT_ID,
+      client_secret: process.env.GOOGLE_CLIENT_SECRET,
+      grant_type: "authorization_code",
+      redirect_uri: process.env.GOOGLE_REDIRECT_URI,
+    });
 
-      console.log(youtubeData);
+    const { access_token } = data;
+    const { data: youtubeData } = await youtubeClient().get("", {
+      headers: {
+        Authorization: "Bearer " + access_token,
+      },
+    });
+
+    const youtubeChannelId: string = youtubeData.items[0].id;
+
+    const channel = await prisma.channels.create({
+      data: {
+        youtubeId: youtubeChannelId,
+        userID: session.user?.id!,
+      },
+    });
+    if (channel) {
+      return {
+        redirect: { destination: "/admin/integrations", permanent: false },
+      };
     }
 
     return {
