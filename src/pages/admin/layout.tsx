@@ -79,7 +79,11 @@ const AdminLayout = ({ children }: PropsWithChildren) => {
             <div className="relative">
               {session.data?.user?.image ? (
                 <ProfleImage source={session.data?.user?.image} />
-              ) : null}
+              ) : (
+                <div
+                  className={`hidden md:block bg-zinc-800 w-[140px] h-[140px] animate-pulse`}
+                ></div>
+              )}
               <button
                 onClick={toggleModal}
                 className="absolute top-16 left-12 hidden md:block"

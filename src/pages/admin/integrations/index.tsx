@@ -1,3 +1,4 @@
+import GitHubContent from "@/components/GitHubContent";
 import TwitchContent from "@/components/TwitchContent";
 import YouTubeContent from "@/components/YouTubeContent";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
@@ -21,27 +22,30 @@ const Integrations = ({ channels }: { channels: Channels }) => {
       <div className="flex flex-col md:flex-row gap-2">
         <a
           href="/api/twitch"
-          className="text-center px-3 py-2 capitalize text-sm  bg-purple-800 text-gray-100 w-full "
+          className="text-center px-3 py-2 capitalize text-sm  bg-purple-800 text-gray-100 "
         >
           Connect Your Twitch
         </a>
         {!channels?.youtubeId && (
           <a
             href="/api/youtube"
-            className="px-3 py-2 capitalize text-sm  bg-red-700 text-gray-100 w-full text-center"
+            className="px-3 py-2 capitalize text-sm  bg-red-700 text-gray-100 text-center"
           >
             Connect Your YouTube channel
           </a>
         )}
-        <a
-          href={"/api/github"}
-          className="text-center px-3 py-2 capitalize text-sm  bg-zinc-600 text-gray-100 w-full "
-        >
-          Connect Your GitHub account
-        </a>
+        {!channels?.githubId && (
+          <a
+            href={"/api/github"}
+            className="text-center px-3 py-2 capitalize text-sm  bg-zinc-600 text-gray-100 "
+          >
+            Connect Your GitHub account
+          </a>
+        )}
       </div>
+      <GitHubContent githubId={channels.githubId} />
       <YouTubeContent channelId={channels?.youtubeId} />
-      <TwitchContent />
+      {/* <TwitchContent /> */}
 
       {/* Connected content */}
     </div>

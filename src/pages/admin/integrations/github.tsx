@@ -1,5 +1,6 @@
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { githubClient, githubTokenClient } from "@/utils/axios";
+import prisma from "@/utils/prisma";
 import { GetServerSidePropsContext } from "next";
 import { getServerSession } from "next-auth";
 import React from "react";
@@ -36,7 +37,12 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     );
 
     if (!session) {
-      return { redirect: { destination: "/auth/login", permanent: false } };
+      return {
+        redirect: {
+          destination: "/auth/login",
+          permanent: false,
+        },
+      };
     }
 
     if (!code) {
@@ -44,30 +50,45 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         redirect: { destination: "/admin/integrations", permanent: false },
       };
     }
+    const { data } = await githubTokenClient().post("", {
+      code: code,
+      redirect_uri: process.env.GITHUB_REDIRECT_URI,
+      client_id: process.env.GITHUB_CLIENT_ID,
+      client_secret: process.env.GITHUB_CLIENT_SECRET,
+    });
 
-    if (code) {
-      const { data } = await githubTokenClient().post("", {
-        code: code,
-        redirect_uri: process.env.GITHUB_REDIRECT_URI,
-        client_id: process.env.GITHUB_CLIENT_ID,
-        client_secret: process.env.GITHUB_CLIENT_SECRET,
-      });
+    const isEligible = data
+      .split("access_token=")[1]
+      .split("&")[0]
+      .startsWith("ghu_");
+    if (!isEligible) {
+      throw new Error("Failed to authenticate");
+    }
+    const access_token = data.split("access_token=")[1].split("&")[0];
+    const res = await githubClient().get("/user", {
+      headers: {
+        Authorization: "Bearer " + access_token,
+      },
+    });
 
-      const isEligible = data
-        .split("access_token=")[1]
-        .split("&")[0]
-        .startsWith("ghu_");
-      if (!isEligible) {
-        throw new Error("Failed to authenticate");
-      }
-      const access_token = data.split("access_token=")[1].split("&")[0];
-      const res = await githubClient().get("/user", {
-        headers: {
-          Authorization: "Bearer " + access_token,
-        },
-      });
+    const login = res.data.login;
+    const save = await prisma.channels.upsert({
+      where: {
+        userID: session?.user?.id!,
+      },
+      update: {
+        githubId: login,
+      },
+      create: {
+        userID: session?.user?.id!,
+        githubId: login,
+      },
+    });
 
-      console.log(res.data);
+    if (save) {
+      return {
+        redirect: { destination: "/admin/integrations", permanent: false },
+      };
     }
 
     return {
@@ -78,7 +99,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     return {
       props: { data: [] },
     };
-    // return { redirect: { destination: "/auth/login", permanent: false } };
   }
 }
 

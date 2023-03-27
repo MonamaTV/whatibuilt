@@ -38,7 +38,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     if (!session) {
       return { redirect: { destination: "/auth/login", permanent: false } };
     }
-
     if (!code) {
       return {
         redirect: { destination: "/admin/integrations", permanent: false },
@@ -62,8 +61,14 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
     const youtubeChannelId: string = youtubeData.items[0].id;
 
-    const channel = await prisma.channels.create({
-      data: {
+    const channel = await prisma.channels.upsert({
+      where: {
+        userID: session?.user?.id,
+      },
+      update: {
+        youtubeId: youtubeChannelId,
+      },
+      create: {
         youtubeId: youtubeChannelId,
         userID: session.user?.id!,
       },
