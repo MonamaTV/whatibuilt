@@ -77,7 +77,9 @@ const AdminLayout = ({ children }: PropsWithChildren) => {
         <div className="container mx-auto md:w-[1200px] flex flex-col md:flex-row md:justify-center dark:md:bg-zinc-900 px-3.5 md:p-10  md:border dark:border-none min-h-full shadow-md">
           <div className="md:w-[20%] w-full mt-3 ">
             <div className="relative">
-              <ProfleImage source={session.data?.user?.image} />
+              {session.data?.user?.image ? (
+                <ProfleImage source={session.data?.user?.image} />
+              ) : null}
               <button
                 onClick={toggleModal}
                 className="absolute top-16 left-12 hidden md:block"
@@ -92,21 +94,23 @@ const AdminLayout = ({ children }: PropsWithChildren) => {
             </div>
             <ul className="flex flex-row md:flex-col justify-around border md:border-none mb-2 border-zinc-300">
               <li className="md:pl-0 md:px-4 px-2 py-1 text-sm md:w-36 my-1 dark:text-zinc-200">
-                <Image
-                  src={session.data?.user?.image || ""}
-                  width={30}
-                  height={30}
-                  onClick={toggleModal}
-                  alt="Profile"
-                  className="rounded-full md:hidden"
-                />
+                {session.data?.user?.image ? (
+                  <Image
+                    src={session.data?.user?.image}
+                    width={30}
+                    height={30}
+                    onClick={toggleModal}
+                    alt="Profile"
+                    className="rounded-full md:hidden"
+                  />
+                ) : null}
               </li>
               <li className="md:pl-0 md:px-4 px-2 py-1 text-sm md:w-36 my-1 dark:text-zinc-200">
                 <Link
                   href="/admin"
                   className={`text-zinc-900 flex flex-row items-center text-xs  space-x-2  px-2 py-1 ${
                     router.pathname === "/admin"
-                      ? "dark:bg-primary bg-zinc-800 dark:text-zinc-900"
+                      ? "bg-primary  dark:text-zinc-900"
                       : "dark:text-zinc-200"
                   }`}
                 >
@@ -118,7 +122,7 @@ const AdminLayout = ({ children }: PropsWithChildren) => {
                   href="/admin/socials"
                   className={`text-zinc-900 flex flex-row items-center text-xs  space-x-2  px-2 py-1 ${
                     router.pathname === "/admin/socials"
-                      ? "dark:bg-primary bg-zinc-800 dark:text-zinc-900"
+                      ? "bg-primary  dark:text-zinc-900"
                       : "dark:text-zinc-200"
                   }`}
                 >
@@ -130,7 +134,7 @@ const AdminLayout = ({ children }: PropsWithChildren) => {
                   href="/admin/integrations"
                   className={`text-zinc-900 flex flex-row items-center text-xs  space-x-2  px-2 py-1 ${
                     router.pathname === "/admin/integrations"
-                      ? "dark:bg-primary bg-zinc-800 dark:text-zinc-900"
+                      ? "bg-primary  dark:text-zinc-900"
                       : "dark:text-zinc-200"
                   }`}
                 >

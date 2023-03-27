@@ -7,7 +7,7 @@ const User = () => {
   return (
     <div className="dark:bg-background min-h-screen min-w-screen flex flex-row md:justify-center md:items-center py-10">
       <div className="container mx-auto md:w-[1200px] flex flex-col md:flex-row md:justify-center md:bg-gray-50/10 px-4 md:p-10 md:border dark:border-none ">
-        <div className="md:w-[30%]] flex flex-row md:flex-col w-full mb-3 items-center md:items-start">
+        <div className="lg:w-[20%] md:w-[30%]  flex flex-row md:flex-col w-full mb-3 items-center md:items-start">
           <Image
             src={"/toucj.jpg"}
             width={"140"}
@@ -96,7 +96,7 @@ const User = () => {
             </ul>
           </div>
         </div>
-        <div className="md:w-[70%] flex flex-col">
+        <div className="md:w-[80%] flex flex-col">
           <div>
             <h1 className="relative text-3xl font-serif text-gray-900 dark:text-gray-100 mb-1 hidden md:block">
               Monama Vincent

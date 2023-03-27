@@ -86,7 +86,7 @@ const Socials = ({ socialAccounts }: { socialAccounts: Social[] }) => {
   };
 
   return (
-    <div className="md:w-[60%] w-full space-y-1">
+    <div className="relative md:w-[60%] w-full space-y-1">
       <h3 className="text-2xl text-zinc-800 dark:text-zinc-100 font-serif my-2">
         Socials
       </h3>
@@ -117,7 +117,7 @@ const Socials = ({ socialAccounts }: { socialAccounts: Social[] }) => {
       <button
         onClick={handleAddSocial}
         disabled={loadingButton}
-        className="disabled:bg-zinc-800 disabled:text-zinc-600 disabled:cursor-not-allowed px-3 py-2 capitalize text-sm  bg-primary  md:w-44 w-full text-zinc-900"
+        className="disabled:bg-zinc-800 disabled:text-zinc-600 disabled:cursor-not-allowed px-3 py-2 capitalize text-sm  bg-primary  md:w-44 w-full text-zinc-900 absolute right-0 block"
       >
         Add link
       </button>
@@ -136,7 +136,7 @@ const Socials = ({ socialAccounts }: { socialAccounts: Social[] }) => {
             <button
               key={social.id}
               onClick={(e) => handleRemoveSocial(e, social.id!)}
-              className="border disabled:bg-zinc-800 disabled:text-zinc-600 disabled:cursor-not-allowed dark:border-zinc-50 text-zinc-100 w-full px-3 py-2 bg-background"
+              className="border disabled:bg-zinc-800 disabled:text-zinc-600 disabled:cursor-not-allowed dark:border-zinc-50 text-zinc-100 w-44 px-3 py-2 bg-background"
             >
               {socials.find((soc) => soc.value === social.name)?.name}
             </button>
