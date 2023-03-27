@@ -1,13 +1,13 @@
 import TwitchContent from "@/components/TwitchContent";
 import YouTubeContent from "@/components/YouTubeContent";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import { githubUri } from "@/utils/axios";
 import { Channels } from "@prisma/client";
 import { GetServerSidePropsContext } from "next";
 import { getServerSession } from "next-auth";
 import React from "react";
 import prisma from "../../../utils/prisma";
 const Integrations = ({ channels }: { channels: Channels }) => {
-  console.log(channels);
   return (
     <div className="md:w-[70%] w-full space-y-3">
       <h3 className="text-2xl text-zinc-800 dark:text-rose-100 font-serif my-2">
@@ -34,7 +34,7 @@ const Integrations = ({ channels }: { channels: Channels }) => {
           </a>
         )}
         <a
-          href="#"
+          href={"/api/github"}
           className="text-center px-3 py-2 capitalize text-sm  bg-zinc-600 text-gray-100 w-full "
         >
           Connect Your GitHub account

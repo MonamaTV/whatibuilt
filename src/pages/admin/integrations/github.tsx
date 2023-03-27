@@ -1,4 +1,5 @@
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import { githubClient, githubTokenClient } from "@/utils/axios";
 import { GetServerSidePropsContext } from "next";
 import { getServerSession } from "next-auth";
 import React from "react";
@@ -24,55 +25,61 @@ const GitHub = () => {
   );
 };
 
-// export async function getServerSideProps(context: GetServerSidePropsContext) {
-//   try {
-//     const code = context.query.code;
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  try {
+    const code = context.query.code;
 
-//     const session = await getServerSession(
-//       context.req,
-//       context.res,
-//       authOptions
-//     );
+    const session = await getServerSession(
+      context.req,
+      context.res,
+      authOptions
+    );
 
-//     if (!session) {
-//       return { redirect: { destination: "/auth/login", permanent: false } };
-//     }
+    if (!session) {
+      return { redirect: { destination: "/auth/login", permanent: false } };
+    }
 
-//     if (!code) {
-//       return {
-//         redirect: { destination: "/admin/integrations", permanent: false },
-//       };
-//     }
+    if (!code) {
+      return {
+        redirect: { destination: "/admin/integrations", permanent: false },
+      };
+    }
 
-//     if (code) {
-//       console.log({
-//         code: code,
-//         grant_type: "authorization_code",
-//         redirect_uri: process.env.TWITCH_REDIRECT_URI,
-//         client_id: process.env.TWITCH_CLIENT_ID,
-//         client_secret: process.env.TWITCH_CLIENT_SECRET,
-//       });
-//       const { data } = await twitchTokenClient().post("", {
-//         code: code,
-//         grant_type: "authorization_code",
-//         redirect_uri: process.env.TWITCH_REDIRECT_URI,
-//         client_id: process.env.TWITCH_CLIENT_ID,
-//         client_secret: process.env.TWITCH_CLIENT_SECRET,
-//       });
+    if (code) {
+      const { data } = await githubTokenClient().post("", {
+        code: code,
+        redirect_uri: process.env.GITHUB_REDIRECT_URI,
+        client_id: process.env.GITHUB_CLIENT_ID,
+        client_secret: process.env.GITHUB_CLIENT_SECRET,
+      });
 
-//       console.log(data);
-//     }
+      const isEligible = data
+        .split("access_token=")[1]
+        .split("&")[0]
+        .startsWith("ghu_");
+      if (!isEligible) {
+        throw new Error("Failed to authenticate");
+      }
+      const access_token = data.split("access_token=")[1].split("&")[0];
+      const res = await githubClient().get("/user", {
+        headers: {
+          Authorization: "Bearer " + access_token,
+        },
+      });
 
-//     return {
-//       props: { data: [] },
-//     };
-//   } catch (error: any) {
-//     console.log(error);
-//     return {
-//       props: { data: [] },
-//     };
-//     // return { redirect: { destination: "/auth/login", permanent: false } };
-//   }
-// }
+      console.log(res.data);
+    }
+
+    return {
+      props: { data: [] },
+    };
+  } catch (error: any) {
+    console.log(error);
+    return {
+      props: { data: [] },
+    };
+    // return { redirect: { destination: "/auth/login", permanent: false } };
+  }
+}
 
 export default GitHub;

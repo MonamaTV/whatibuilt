@@ -58,3 +58,27 @@ export const twitchTokenClient = () => {
     },
   });
 };
+export const githubAuthClient = () => {
+  return axios.create({
+    baseURL: process.env.GITHUB_OAUTH + "/authorize",
+    params: {
+      redirect_uri: process.env.GITHUB_REDIRECT_URI,
+      client_id: process.env.GITHUB_CLIENT_ID,
+    },
+  });
+};
+export const githubTokenClient = () => {
+  return axios.create({
+    baseURL: process.env.GITHUB_OAUTH + "/access_token",
+  });
+};
+
+export const githubClient = () => {
+  return axios.create({
+    baseURL: "https://api.github.com",
+  });
+};
+
+export const githubUri = githubAuthClient().getUri();
+// export const twitchUri = twitchAuthClient().getUri();
+// export const youtubeUri = youtubeAuthClient().getUri();
