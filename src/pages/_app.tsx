@@ -1,9 +1,9 @@
 import "@/styles/globals.css";
 import { SessionProvider } from "next-auth/react";
 import type { AppProps } from "next/app";
-import AdminLayout from "./admin/layout";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
+import AdminLayout from "@/components/Layout/AdminLayout";
 
 const queryClient = new QueryClient();
 

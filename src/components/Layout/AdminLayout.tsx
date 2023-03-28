@@ -1,17 +1,17 @@
-import ProfleImage from "@/components/ProfilePicture";
-import Uploader from "@/components/Uploader";
+import { updateUser } from "@/services/user";
+import { supabase } from "@/utils/supabase";
+import { User } from "@prisma/client";
+import { useMutation } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { PropsWithChildren, useState } from "react";
-import Nav from "@/components/Nav";
-import { supabase } from "@/utils/supabase";
 import path from "path";
-import { updateUser } from "@/services/user";
-import { useMutation } from "@tanstack/react-query";
-import { User } from "@prisma/client";
-import { ToastError, ToastSuccess } from "@/components/Toasts/Toasts";
+import { PropsWithChildren, useState } from "react";
+import Nav from "../Nav";
+import ProfleImage from "../ProfilePicture";
+import { ToastError, ToastSuccess } from "../Toasts/Toasts";
+import Uploader from "../Uploader";
 
 const AdminLayout = ({ children }: PropsWithChildren) => {
   const [file, setFile] = useState<File | undefined>();
