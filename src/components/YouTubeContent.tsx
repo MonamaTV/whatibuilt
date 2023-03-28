@@ -71,9 +71,7 @@ const YouTubeContent = ({ channelId }: { channelId: string | null }) => {
               <p className="px-2 pt-3 text-zinc-700 dark:text-zinc-100 text-sm capitalize my-1">
                 {snippet.title.slice(0, 50) + "..."}
               </p>
-              <small className="px-2 text-zinc-700 dark:text-zinc-300 text-xs flex items-center  ">
-                {/* {snippet.publishedAt.split("T")[0]} */}
-              </small>
+              <small className="px-2 text-zinc-700 dark:text-zinc-300 text-xs flex items-center  "></small>
             </div>
           );
         })}
