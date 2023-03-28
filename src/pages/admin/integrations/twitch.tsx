@@ -46,10 +46,14 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     }
 
     if (code) {
+      const uri =
+        process.env.NODE_ENV === "development"
+          ? "http://localhost:3000/admin/integrations/youtube"
+          : process.env.TWITCH_REDIRECT_URI;
       const { data } = await twitchTokenClient().post("", {
         code: code,
         grant_type: "authorization_code",
-        redirect_uri: process.env.TWITCH_REDIRECT_URI,
+        redirect_uri: uri,
         client_id: process.env.TWITCH_CLIENT_ID,
         client_secret: process.env.TWITCH_CLIENT_SECRET,
       });

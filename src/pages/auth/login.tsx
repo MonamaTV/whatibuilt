@@ -1,4 +1,3 @@
-import Uploader from "@/components/Uploader";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { getServerSession } from "next-auth";
 import { getProviders, signIn } from "next-auth/react";

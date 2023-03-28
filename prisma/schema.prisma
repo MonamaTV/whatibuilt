@@ -45,6 +45,8 @@ model User {
   image         String?
   role          String?
   bio           String?
+  published     Boolean   @default(false)
+  publishedAt   DateTime  @default(now())
   username      String?   @unique
   accounts      Account[]
   sessions      Session[]

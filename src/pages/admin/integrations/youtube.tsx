@@ -43,13 +43,16 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         redirect: { destination: "/admin/integrations", permanent: false },
       };
     }
-
+    const uri =
+      process.env.NODE_ENV === "development"
+        ? "http://localhost:3000/admin/integrations/youtube"
+        : process.env.GOOGLE_REDIRECT_URI;
     const { data } = await youtubeTokenClient().post("", {
       code: code,
       client_id: process.env.GOOGLE_CLIENT_ID,
       client_secret: process.env.GOOGLE_CLIENT_SECRET,
       grant_type: "authorization_code",
-      redirect_uri: process.env.GOOGLE_REDIRECT_URI,
+      redirect_uri: uri,
     });
 
     const { access_token } = data;

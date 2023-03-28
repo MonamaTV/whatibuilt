@@ -4,6 +4,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Root } from "@/utils/types";
 import YouTubeLoader from "./Loaders/YouTubeLoader";
+import YouTubeImage from "./Image/Image";
 const YouTubeContent = ({ channelId }: { channelId: string | null }) => {
   const [content, setContent] = useState<Root[]>([]);
 
@@ -66,13 +67,7 @@ const YouTubeContent = ({ channelId }: { channelId: string | null }) => {
               key={video.id}
               className="w-56 pb-2  flex-shrink-0 border dark:border-zinc-800 border-zinc-100"
             >
-              <Image
-                src={snippet.thumbnails.medium.url}
-                width={"250"}
-                height={"50"}
-                className=""
-                alt="Tag"
-              />
+              <YouTubeImage url={snippet.thumbnails.medium.url} />
               <p className="px-2 pt-3 text-zinc-700 dark:text-zinc-100 text-sm capitalize my-1">
                 {snippet.title.slice(0, 50) + "..."}
               </p>

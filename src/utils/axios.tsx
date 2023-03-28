@@ -20,11 +20,15 @@ export const youtubeClient = () => {
 };
 
 export const youtubeAuthClient = () => {
+  const uri =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:3000/admin/integrations/youtube"
+      : process.env.GOOGLE_REDIRECT_URI;
   return axios.create({
     baseURL: process.env.GOOGLE_OAUTH,
     params: {
       client_id: process.env.GOOGLE_CLIENT_ID,
-      redirect_uri: process.env.GOOGLE_REDIRECT_URI,
+      redirect_uri: uri,
       response_type: "code",
       scope: process.env.YOUTUBE_SCOPES,
     },
@@ -39,11 +43,15 @@ export const youtubeTokenClient = () => {
   });
 };
 export const twitchAuthClient = () => {
+  const uri =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:3000/admin/integrations/youtube"
+      : process.env.TWITCH_REDIRECT_URI;
   return axios.create({
     baseURL: process.env.TWITCH_OAUTH,
     params: {
       response_type: "code",
-      redirect_uri: process.env.TWITCH_REDIRECT_URI,
+      redirect_uri: uri,
       client_id: process.env.TWITCH_CLIENT_ID,
       scope: "user:edit",
     },
@@ -80,5 +88,3 @@ export const githubClient = () => {
 };
 
 export const githubUri = githubAuthClient().getUri();
-// export const twitchUri = twitchAuthClient().getUri();
-// export const youtubeUri = youtubeAuthClient().getUri();
