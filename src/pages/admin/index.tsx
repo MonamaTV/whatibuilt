@@ -34,7 +34,7 @@ const Dashboard = ({ user }: { user: User }) => {
   };
 
   return (
-    <div className="md:w-[60%] w-full space-y-3 ">
+    <div className="md:w-[70%] w-full space-y-3 ">
       <h3 className="text-2xl text-zinc-800 dark:text-zinc-100 font-serif my-2">
         Details
       </h3>

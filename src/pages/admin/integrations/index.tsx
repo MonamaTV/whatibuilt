@@ -6,6 +6,7 @@ import { githubUri } from "@/utils/axios";
 import { Channels } from "@prisma/client";
 import { GetServerSidePropsContext } from "next";
 import { getServerSession } from "next-auth";
+import Link from "next/link";
 import React from "react";
 import prisma from "../../../utils/prisma";
 const Integrations = ({ channels }: { channels: Channels }) => {
@@ -20,34 +21,31 @@ const Integrations = ({ channels }: { channels: Channels }) => {
       </p>
 
       <div className="flex flex-col md:flex-row gap-2">
-        <a
+        <Link
           href="/api/twitch"
           className="text-center px-3 py-2 capitalize text-sm  bg-purple-800 text-gray-100 "
         >
           Connect Your Twitch
-        </a>
+        </Link>
         {!channels?.youtubeId && (
-          <a
+          <Link
             href="/api/youtube"
             className="px-3 py-2 capitalize text-sm  bg-red-700 text-gray-100 text-center"
           >
             Connect Your YouTube channel
-          </a>
+          </Link>
         )}
         {!channels?.githubId && (
-          <a
+          <Link
             href={"/api/github"}
             className="text-center px-3 py-2 capitalize text-sm  bg-zinc-600 text-gray-100 "
           >
             Connect Your GitHub account
-          </a>
+          </Link>
         )}
       </div>
       <GitHubContent githubId={channels.githubId} />
       <YouTubeContent channelId={channels?.youtubeId} />
-      {/* <TwitchContent /> */}
-
-      {/* Connected content */}
     </div>
   );
 };

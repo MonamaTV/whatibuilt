@@ -62,7 +62,7 @@ export const githubAuthClient = () => {
   return axios.create({
     baseURL: process.env.GITHUB_OAUTH + "/authorize",
     params: {
-      redirect_uri: process.env.GITHUB_REDIRECT_URI,
+      redirect_uri: process.env.GITHUB_REDIRECTURI,
       client_id: process.env.GITHUB_CLIENT_ID,
     },
   });

@@ -86,7 +86,7 @@ const Socials = ({ socialAccounts }: { socialAccounts: Social[] }) => {
   };
 
   return (
-    <div className="relative md:w-[60%] w-full space-y-1">
+    <div className="relative md:w-[70%] w-full space-y-1">
       <h3 className="text-2xl text-zinc-800 dark:text-zinc-100 font-serif my-2">
         Socials
       </h3>
@@ -123,10 +123,11 @@ const Socials = ({ socialAccounts }: { socialAccounts: Social[] }) => {
       </button>
       <br />
       <br />
+      <br className="md:hidden" />
 
       {addedSocials.length > 0 && (
         <>
-          <h4 className="text-xl text-zinc-800 dark:text-rose-100 font-serif my-2">
+          <h4 className="text-xl  text-zinc-800 dark:text-rose-100 font-serif my-2 mt-3">
             Added
           </h4>
           <p className="text-sm dark:text-zinc-100 text-zinc-700">

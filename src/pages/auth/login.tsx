@@ -39,7 +39,7 @@ const Login = ({
           className="text-left flex text-sm hover:underline"
           href={"/auth/register"}
         >
-          Don't have an account? Sign up{" "}
+          Don&apos;t have an account? Sign up{" "}
         </Link>
       </div>
     </div>

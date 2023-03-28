@@ -77,7 +77,7 @@ const YouTubeContent = ({ channelId }: { channelId: string | null }) => {
                 {snippet.title.slice(0, 50) + "..."}
               </p>
               <small className="px-2 text-zinc-700 dark:text-zinc-300 text-xs flex items-center  ">
-                {snippet.publishedAt.split("T")[0]}
+                {/* {snippet.publishedAt.split("T")[0]} */}
               </small>
             </div>
           );

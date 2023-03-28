@@ -1,4 +1,5 @@
 import * as Yup from "yup";
+import { colors } from "./colors";
 
 export interface Root {
   kind: string;
@@ -127,7 +128,7 @@ export interface Repos {
   size: number;
   stargazers_count: number;
   watchers_count: number;
-  language: any;
+  language: keyof typeof colors;
   has_issues: boolean;
   has_projects: boolean;
   has_downloads: boolean;

@@ -52,7 +52,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     }
     const { data } = await githubTokenClient().post("", {
       code: code,
-      redirect_uri: process.env.GITHUB_REDIRECT_URI,
+      redirect_uri: process.env.GITHUB_REDIRECTURI,
       client_id: process.env.GITHUB_CLIENT_ID,
       client_secret: process.env.GITHUB_CLIENT_SECRET,
     });

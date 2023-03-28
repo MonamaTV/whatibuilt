@@ -1,10 +1,11 @@
+"use client";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { githubClient } from "@/utils/axios";
 import { Repos } from "@/utils/types";
 import Link from "next/link";
 import YouTubeLoader from "./Loaders/YouTubeLoader";
+import { getColor } from "@/utils/colors";
 const GitHubContent = ({ githubId }: { githubId: string | null }) => {
   const [repos, setRepos] = useState<Repos[]>([]);
   const fetchRepos = async () => {
@@ -33,8 +34,15 @@ const GitHubContent = ({ githubId }: { githubId: string | null }) => {
       </h3>
       <div className="flex flex-row overflow-x-auto gap-x-3 w-full">
         {repos.map((repo) => {
+          const color: string =
+            `bg-[${getColor(repo.language) ?? "#f4f4f4"}]` +
+            " w-3 h-3 rounded-full";
+          console.log(repo.language, color);
           return (
-            <div className="w-72 p-3 h-36 flex-shrink-0 border border-zinc-300 ">
+            <div
+              key={repo.id}
+              className="w-72 p-3 h-36 flex-shrink-0 border dark:border-zinc-800 border-zinc-300 "
+            >
               <h3 className="text-blue-500 font-semibold flex flex-row items-center gap-x-2">
                 <Image
                   src="/repo.png"
@@ -47,11 +55,11 @@ const GitHubContent = ({ githubId }: { githubId: string | null }) => {
                 </Link>
               </h3>
               <small className="text-sm dark:text-zinc-300">
-                {repo.description?.slice(0, 100) + "..."}
+                {repo?.description?.slice(0, 100) + "..."}
               </small>
               {repo.language && (
-                <small className="text-xs text-zinc-400 block">
-                  Written in {repo.language}
+                <small className="text-xs text-zinc-400  flex flex-row items-center my-1 gap-x-2">
+                  <div className={color}></div> Written in {repo.language}
                 </small>
               )}
             </div>
