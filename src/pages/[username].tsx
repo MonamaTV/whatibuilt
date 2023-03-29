@@ -11,8 +11,8 @@ const User = ({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   return (
     <div className="dark:bg-background min-h-screen min-w-screen flex flex-row md:justify-center md:items-center py-10">
-      <div className="container mx-auto md:w-[1200px] flex flex-col md:flex-row md:justify-center md:bg-gray-50/10 px-4 md:p-10 md:border dark:border-none ">
-        <div className="lg:w-[20%] md:w-[30%]  flex flex-row md:flex-col w-full mb-3 items-center md:items-start">
+      <div className="container mx-auto md:w-[1200px] flex flex-col md:flex-row md:justify-center md:bg-zinc-50/10 px-4 md:p-10 md:border dark:border-none rounded-lg">
+        <div className="lg:w-[20%] md:w-[30%]  flex flex-row md:flex-col w-full mb-3 items-center md:items-start ">
           {user.image && (
             <Image
               src={user.image}
@@ -23,18 +23,18 @@ const User = ({
             />
           )}
           <div className="px-3">
-            <h3 className="font-bold text-xl font-serif md:hidden text-gray-900 dark:text-gray-100">
+            <h3 className="font-bold text-xl font-serif md:hidden text-zinc-700 dark:text-zinc-100">
               {user.name}
             </h3>
-            <p className="md:my-2 font-serif dark:text-gray-100 text-gray-700">
+            <p className="md:my-2 font-serif dark:text-zinc-100 text-zinc-700">
               {user.role}
             </p>
             <ul className="flex flex-row md:flex-col justify-start gap-x-1">
               {user.channels?.githubId && (
-                <li className="md:pl-0 md:px-4 px-2 py-1 text-sm dark:bg-zinc-800 rounded-lg bg-zinc-100  m-0.5 md:w-36 text-gray-200">
+                <li className="md:pl-0 md:px-4 px-2 py-1 text-sm dark:bg-zinc-800 md:dark:bg-inherit rounded-lg bg-zinc-100  m-0.5 md:w-36 text-zinc-200">
                   <Link
                     href={"https://github.com/" + user.channels.githubId}
-                    className="flex flex-row items-center text-xs text-gray-200 space-x-2"
+                    className="flex flex-row items-center text-xs text-zinc-200 space-x-2"
                   >
                     <Image
                       src={"/github1.svg"}
@@ -54,12 +54,12 @@ const User = ({
                   return (
                     <li
                       key={social.id}
-                      className="  md:pl-0 md:px-4 px-2 py-1 text-sm dark:bg-zinc-800 rounded-lg bg-zinc-100  m-0.5 md:w-36 text-gray-200"
+                      className="  md:pl-0 md:px-4 px-2 py-1 text-sm dark:bg-zinc-800 md:dark:bg-inherit rounded-lg bg-zinc-100  m-0.5 md:w-36 text-zinc-200"
                     >
                       <Link
                         href={social.url}
                         target="_blank"
-                        className="flex flex-row items-center w-full text-xs text-gray-200 space-x-2"
+                        className="flex flex-row items-center w-full text-xs text-zinc-200 space-x-2"
                       >
                         <Image
                           src={`/${name?.toLowerCase()}.svg`}
@@ -79,10 +79,10 @@ const User = ({
                 })}
 
               {user.channels?.twitchId && (
-                <li className="  md:pl-0 md:px-4 px-2 py-1 text-sm dark:bg-zinc-800 rounded-lg bg-zinc-100  m-0.5 md:w-36 text-gray-200">
+                <li className="  md:pl-0 md:px-4 px-2 py-1 text-sm dark:bg-zinc-800 md:dark:bg-inherit rounded-lg bg-zinc-100  m-0.5 md:w-36 text-zinc-200">
                   <Link
                     href="/"
-                    className="flex flex-row items-center w-full text-xs text-gray-200 space-x-2"
+                    className="flex flex-row items-center w-full text-xs text-zinc-200 space-x-2"
                   >
                     <Image
                       src={"/twitch.svg"}
@@ -95,14 +95,14 @@ const User = ({
                 </li>
               )}
               {user.channels?.youtubeId && (
-                <li className="  md:pl-0 md:px-4 px-2 py-1 text-sm dark:bg-zinc-800 rounded-lg bg-zinc-100  m-0.5 md:w-36 text-gray-200">
+                <li className="  md:pl-0 md:px-4 px-2 py-1 text-sm dark:bg-zinc-800 md:dark:bg-inherit rounded-lg bg-zinc-100  m-0.5 md:w-36 text-zinc-200">
                   <Link
                     href={
                       "https://www.youtube.com/watch?ab_channel=" +
                       user.channels.youtubeId
                     }
                     target="_blank"
-                    className="flex flex-row items-center w-full text-xs text-gray-200 space-x-2"
+                    className="flex flex-row items-center w-full text-xs text-zinc-200 space-x-2"
                   >
                     <Image
                       src={"/youtube.svg"}
@@ -119,18 +119,19 @@ const User = ({
         </div>
         <div className="md:w-[80%] flex flex-col">
           <div>
-            <h1 className="relative text-3xl font-serif text-gray-900 dark:text-gray-100 mb-1 hidden md:block">
+            <h1 className="relative text-3xl font-serif text-zinc-900 dark:text-zinc-100 mb-1 hidden md:block">
               {user.name}
             </h1>
-            <p className="dark:text-gray-300 text-gray-500  text-sm">
+            <p className="dark:text-zinc-300 text-zinc-500  text-sm">
               {user?.bio}
             </p>
           </div>
-          {user.channels?.youtubeId && (
-            <YouTubeContent channelId={user.channels?.youtubeId} />
-          )}
+
           {user.channels?.githubId && (
             <GitHubContent githubId={user.channels?.githubId} />
+          )}
+          {user.channels?.youtubeId && (
+            <YouTubeContent channelId={user.channels?.youtubeId} />
           )}
         </div>
       </div>
