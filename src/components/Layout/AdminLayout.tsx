@@ -112,10 +112,10 @@ const AdminLayout = ({ children }: PropsWithChildren) => {
               <li className="md:pl-0 md:px-4 px-2 py-1 text-sm md:w-36 my-1 dark:text-zinc-200">
                 <Link
                   href="/admin"
-                  className={`rounded-md text-zinc-900 flex flex-row items-center text-xs  space-x-2  px-2 py-1 ${
+                  className={`rounded-md  flex flex-row items-center text-xs  space-x-2  px-2 py-1 ${
                     router.pathname === "/admin"
                       ? "bg-primary  text-zinc-100"
-                      : "dark:text-zinc-200"
+                      : "dark:text-zinc-200 text-zinc-900"
                   }`}
                 >
                   <span className="md:block">Profile</span>
@@ -124,10 +124,10 @@ const AdminLayout = ({ children }: PropsWithChildren) => {
               <li className="md:pl-0 md:px-4 px-2 py-1 text-sm md:w-36 my-1">
                 <Link
                   href="/admin/socials"
-                  className={`rounded-md text-zinc-900 flex flex-row items-center text-xs  space-x-2  px-2 py-1 ${
+                  className={`rounded-md  flex flex-row items-center text-xs  space-x-2  px-2 py-1 ${
                     router.pathname === "/admin/socials"
                       ? "bg-primary  text-zinc-100"
-                      : "dark:text-zinc-200"
+                      : "dark:text-zinc-200 text-zinc-900"
                   }`}
                 >
                   <span className="md:block">Socials</span>
@@ -136,10 +136,10 @@ const AdminLayout = ({ children }: PropsWithChildren) => {
               <li className="md:pl-0 md:px-4 px-2 py-1 text-sm md:w-36 my-1 ">
                 <Link
                   href="/admin/integrations"
-                  className={`rounded-md text-zinc-900 flex flex-row items-center text-xs  space-x-2  px-2 py-1 ${
+                  className={`rounded-md  flex flex-row items-center text-xs  space-x-2  px-2 py-1 ${
                     router.pathname === "/admin/integrations"
                       ? "bg-primary text-zinc-100"
-                      : "dark:text-zinc-200"
+                      : "dark:text-zinc-200 text-zinc-900"
                   }`}
                 >
                   <span className="md:block">Integration</span>
