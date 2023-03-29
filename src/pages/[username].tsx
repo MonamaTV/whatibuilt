@@ -29,7 +29,7 @@ const User = ({
               {user.role}
             </p>
             <ul className="flex flex-row md:flex-col justify-around ">
-              <li className="  md:pl-0 md:px-4 px-2 py-1 text-sm md:w-36 my-1 text-gray-200">
+              <li className="md:pl-0 md:px-4 px-2 py-1 text-sm bg-zinc-800 rounded-lg m-0.5 md:w-36 text-gray-200">
                 <Link
                   href="/"
                   className="flex flex-row items-center text-xs text-gray-200 space-x-2"
@@ -43,7 +43,7 @@ const User = ({
                   <span className="hidden md:block">GitHub</span>
                 </Link>
               </li>
-              <li className="  md:pl-0 md:px-4 px-2 py-1 text-sm md:w-36 my-1 text-gray-200">
+              <li className="  md:pl-0 md:px-4 px-2 py-1 text-sm bg-zinc-800 rounded-lg m-0.5 md:w-36 text-gray-200">
                 <Link
                   href="/"
                   className="flex flex-row items-center w-full text-xs text-gray-200 space-x-2"
@@ -52,12 +52,12 @@ const User = ({
                     src={"/linkedin.svg"}
                     height={20}
                     width={20}
-                    alt="GitHub"
+                    alt="LinkedIn"
                   />
                   <span className="hidden md:block">LinkedIn</span>
                 </Link>
               </li>
-              <li className="  md:pl-0 md:px-4 px-2 py-1 text-sm md:w-36 my-1 text-gray-200">
+              <li className="  md:pl-0 md:px-4 px-2 py-1 text-sm bg-zinc-800 rounded-lg m-0.5 md:w-36 text-gray-200">
                 <Link
                   href="/"
                   className="flex flex-row items-center w-full text-xs text-gray-200 space-x-2"
@@ -66,12 +66,12 @@ const User = ({
                     src={"/twitter.svg"}
                     height={20}
                     width={20}
-                    alt="GitHub"
+                    alt="Twitter account"
                   />
                   <span className="hidden md:block">Twitter</span>
                 </Link>
               </li>
-              <li className="  md:pl-0 md:px-4 px-2 py-1 text-sm md:w-36 my-1 text-gray-200">
+              <li className="  md:pl-0 md:px-4 px-2 py-1 text-sm bg-zinc-800 rounded-lg m-0.5 md:w-36 text-gray-200">
                 <Link
                   href="/"
                   className="flex flex-row items-center w-full text-xs text-gray-200 space-x-2"
@@ -85,7 +85,7 @@ const User = ({
                   <span className="hidden md:block">Twitch</span>
                 </Link>
               </li>
-              <li className="  md:pl-0 md:px-4 px-2 py-1 text-sm md:w-36 my-1 text-gray-200">
+              <li className="  md:pl-0 md:px-4 px-2 py-1 text-sm bg-zinc-800 rounded-lg m-0.5 md:w-36 text-gray-200">
                 <Link
                   href="/"
                   className="flex flex-row items-center w-full text-xs text-gray-200 space-x-2"
@@ -94,7 +94,7 @@ const User = ({
                     src={"/youtube.svg"}
                     height={20}
                     width={20}
-                    alt="GitHub"
+                    alt="Youtube channel"
                   />
                   <span className="hidden md:block">YouTube</span>
                 </Link>
