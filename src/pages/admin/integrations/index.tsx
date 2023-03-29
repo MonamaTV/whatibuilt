@@ -12,7 +12,7 @@ import prisma from "../../../utils/prisma";
 const Integrations = ({ channels }: { channels: Channels }) => {
   return (
     <div className="md:w-[70%] w-full space-y-3">
-      <h3 className="text-2xl text-zinc-800 dark:text-rose-100 font-serif my-2">
+      <h3 className="text-2xl text-zinc-800 dark:text-zinc-100 font-serif my-2">
         Integrations
       </h3>
       <p className="dark:text-gray-100 text-zinc-700 text-sm">

@@ -7,7 +7,6 @@ import YouTubeLoader from "./Loaders/YouTubeLoader";
 import YouTubeImage from "./Image/Image";
 const YouTubeContent = ({ channelId }: { channelId: string | null }) => {
   const [content, setContent] = useState<Root[]>([]);
-
   const fetchChannelUploadId = async () => {
     const { data } = await axios.get(
       "https://youtube.googleapis.com/youtube/v3/channels?part=contentDetails",
@@ -18,7 +17,6 @@ const YouTubeContent = ({ channelId }: { channelId: string | null }) => {
         },
       }
     );
-    console.log(data);
     if (!data.items[0].contentDetails.relatedPlaylists.uploads)
       throw new Error("No uploads");
     return data.items[0].contentDetails.relatedPlaylists.uploads;

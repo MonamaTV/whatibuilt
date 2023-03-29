@@ -8,7 +8,7 @@ const ProfleImage = ({ source }: { source: string | null | undefined }) => {
       src={source || ""}
       width={"140"}
       height={"140"}
-      className={`bg-zinc-800 w-[140px] h-[140px] shadow hidden md:block duration-700 ease-in-out ${
+      className={`bg-zinc-800 w-[140px] h-[140px] object-cover shadow hidden md:block duration-700 ease-in-out ${
         loading ? "grayscale blur-2xl scale-110" : ""
       }`}
       alt="Profile picture"

@@ -20,7 +20,7 @@ const Repo = ({ repo, color }: { repo: Repos; color: string }) => {
       </small>
       {repo.language && (
         <small className="text-xs text-zinc-400  flex flex-row items-center my-1 gap-x-2">
-          <div className={color}></div> Written in {repo.language}
+          <div className={color.toString()}></div> Written in {repo.language}
         </small>
       )}
     </div>

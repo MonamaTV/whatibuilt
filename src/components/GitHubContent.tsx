@@ -1,4 +1,3 @@
-"use client";
 import React, { useEffect, useState } from "react";
 import { githubClient } from "@/utils/axios";
 import { Repos } from "@/utils/types";
