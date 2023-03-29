@@ -12,13 +12,15 @@ const User = ({
     <div className="dark:bg-background min-h-screen min-w-screen flex flex-row md:justify-center md:items-center py-10">
       <div className="container mx-auto md:w-[1200px] flex flex-col md:flex-row md:justify-center md:bg-gray-50/10 px-4 md:p-10 md:border dark:border-none ">
         <div className="lg:w-[20%] md:w-[30%]  flex flex-row md:flex-col w-full mb-3 items-center md:items-start">
-          <Image
-            src={"/toucj.jpg"}
-            width={"140"}
-            height={"140"}
-            alt="Image"
-            className=" shadow"
-          />
+          {user.image && (
+            <Image
+              src={user.image}
+              width={"140"}
+              height={"140"}
+              alt="Image"
+              className=" shadow"
+            />
+          )}
           <div className="px-3">
             <h3 className="font-bold text-xl font-serif md:hidden text-gray-900 dark:text-gray-100">
               {user.name}
@@ -132,7 +134,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       socials: true,
     },
   });
-  console.log();
   return {
     props: { user: { ...user, publishedAt: null } },
   };
