@@ -32,12 +32,7 @@ const GitHubContent = ({ githubId }: { githubId: string | null }) => {
       </h3>
       <div className="flex flex-row overflow-x-auto gap-x-3 w-full">
         {repos.map((repo) => {
-          const color: string =
-            `bg-[${getColor(repo.language) ?? "#f4f4f4"}]` +
-            " w-3 h-3 rounded-full";
-          console.log(repo.issue_comment_url);
-
-          return <Repo key={repo.id} repo={repo} color={color} />;
+          return <Repo key={repo.id} repo={repo} />;
         })}
       </div>
     </div>

@@ -4,6 +4,7 @@ import prisma from "@/utils/prisma";
 import Link from "next/link";
 import YouTubeContent from "@/components/YouTubeContent";
 import GitHubContent from "@/components/GitHubContent";
+import { socials } from "@/utils/types";
 
 const User = ({
   user,
@@ -43,6 +44,34 @@ const User = ({
                   <span className="hidden md:block">GitHub</span>
                 </Link>
               </li>
+              {user.socials &&
+                user.socials.map((social) => {
+                  const name = socials.find(
+                    (soc) => soc.value === social.name
+                  )?.name;
+                  return (
+                    <li className="  md:pl-0 md:px-4 px-2 py-1 text-sm dark:bg-zinc-800 rounded-lg bg-zinc-100  m-0.5 md:w-36 text-gray-200">
+                      <Link
+                        href={social.url}
+                        target="_blank"
+                        className="flex flex-row items-center w-full text-xs text-gray-200 space-x-2"
+                      >
+                        <Image
+                          src={`/${name}.svg`}
+                          height={20}
+                          width={20}
+                          alt="LinkedIn"
+                        />
+                        <span className="hidden md:block">
+                          {
+                            socials.find((soc) => soc.value === social.name)
+                              ?.name
+                          }
+                        </span>
+                      </Link>
+                    </li>
+                  );
+                })}
               <li className="  md:pl-0 md:px-4 px-2 py-1 text-sm dark:bg-zinc-800 rounded-lg bg-zinc-100  m-0.5 md:w-36 text-gray-200">
                 <Link
                   href="/"
@@ -57,20 +86,7 @@ const User = ({
                   <span className="hidden md:block">LinkedIn</span>
                 </Link>
               </li>
-              <li className="  md:pl-0 md:px-4 px-2 py-1 text-sm dark:bg-zinc-800 rounded-lg bg-zinc-100  m-0.5 md:w-36 text-gray-200">
-                <Link
-                  href="/"
-                  className="flex flex-row items-center w-full text-xs text-gray-200 space-x-2"
-                >
-                  <Image
-                    src={"/twitter.svg"}
-                    height={20}
-                    width={20}
-                    alt="Twitter account"
-                  />
-                  <span className="hidden md:block">Twitter</span>
-                </Link>
-              </li>
+
               <li className="  md:pl-0 md:px-4 px-2 py-1 text-sm dark:bg-zinc-800 rounded-lg bg-zinc-100  m-0.5 md:w-36 text-gray-200">
                 <Link
                   href="/"
@@ -85,20 +101,26 @@ const User = ({
                   <span className="hidden md:block">Twitch</span>
                 </Link>
               </li>
-              <li className="  md:pl-0 md:px-4 px-2 py-1 text-sm dark:bg-zinc-800 rounded-lg bg-zinc-100  m-0.5 md:w-36 text-gray-200">
-                <Link
-                  href="/"
-                  className="flex flex-row items-center w-full text-xs text-gray-200 space-x-2"
-                >
-                  <Image
-                    src={"/youtube.svg"}
-                    height={20}
-                    width={20}
-                    alt="Youtube channel"
-                  />
-                  <span className="hidden md:block">YouTube</span>
-                </Link>
-              </li>
+              {user.channels?.youtubeId && (
+                <li className="  md:pl-0 md:px-4 px-2 py-1 text-sm dark:bg-zinc-800 rounded-lg bg-zinc-100  m-0.5 md:w-36 text-gray-200">
+                  <Link
+                    href={
+                      "https://www.youtube.com/watch?ab_channel=" +
+                      user.channels.youtubeId
+                    }
+                    target="_blank"
+                    className="flex flex-row items-center w-full text-xs text-gray-200 space-x-2"
+                  >
+                    <Image
+                      src={"/youtube.svg"}
+                      height={20}
+                      width={20}
+                      alt="Youtube channel"
+                    />
+                    <span className="hidden md:block">YouTube</span>
+                  </Link>
+                </li>
+              )}
             </ul>
           </div>
         </div>

@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const Repo = ({ repo, color }: { repo: Repos; color: string }) => {
+const Repo = ({ repo }: { repo: Repos }) => {
   return (
     <div
       key={repo.id}
@@ -21,9 +21,9 @@ const Repo = ({ repo, color }: { repo: Repos; color: string }) => {
           <span>{repo.name}</span>
         </Link>
       </p>
-      <small className="text-sm dark:text-gray-300 text-gray-500">
+      <p className="text-sm dark:text-gray-300 text-gray-500">
         {repo?.description?.slice(0, 100) + "..."}
-      </small>
+      </p>
       {/* {repo.language && (
         <small className="text-xs text-zinc-400  flex flex-row items-center my-1 gap-x-2">
           <div className={color.toString()}></div> Written in {repo.language}
