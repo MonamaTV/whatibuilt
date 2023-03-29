@@ -44,8 +44,8 @@ const Integrations = ({ channels }: { channels: Channels }) => {
           </Link>
         )}
       </div>
-      <GitHubContent githubId={channels.githubId} />
-      <YouTubeContent channelId={channels?.youtubeId} />
+      {/* <GitHubContent githubId={channels.githubId} /> */}
+      {/* <YouTubeContent channelId={channels?.youtubeId} /> */}
     </div>
   );
 };
