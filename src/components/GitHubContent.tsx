@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { githubClient } from "@/utils/axios";
 import { Repos } from "@/utils/types";
 import YouTubeLoader from "./Loaders/YouTubeLoader";
-import { getColor } from "@/utils/colors";
 import Repo from "./Repo";
 const GitHubContent = ({ githubId }: { githubId: string | null }) => {
   const [repos, setRepos] = useState<Repos[]>([]);

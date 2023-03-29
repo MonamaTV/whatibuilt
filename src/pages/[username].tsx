@@ -29,28 +29,33 @@ const User = ({
             <p className="md:my-2 font-serif dark:text-gray-100 text-gray-700">
               {user.role}
             </p>
-            <ul className="flex flex-row md:flex-col justify-around ">
-              <li className="md:pl-0 md:px-4 px-2 py-1 text-sm dark:bg-zinc-800 rounded-lg bg-zinc-100  m-0.5 md:w-36 text-gray-200">
-                <Link
-                  href="/"
-                  className="flex flex-row items-center text-xs text-gray-200 space-x-2"
-                >
-                  <Image
-                    src={"/github1.svg"}
-                    height={20}
-                    width={20}
-                    alt="GitHub"
-                  />
-                  <span className="hidden md:block">GitHub</span>
-                </Link>
-              </li>
+            <ul className="flex flex-row md:flex-col justify-start gap-x-1">
+              {user.channels?.githubId && (
+                <li className="md:pl-0 md:px-4 px-2 py-1 text-sm dark:bg-zinc-800 rounded-lg bg-zinc-100  m-0.5 md:w-36 text-gray-200">
+                  <Link
+                    href={"https://github.com/" + user.channels.githubId}
+                    className="flex flex-row items-center text-xs text-gray-200 space-x-2"
+                  >
+                    <Image
+                      src={"/github1.svg"}
+                      height={20}
+                      width={20}
+                      alt="GitHub"
+                    />
+                    <span className="hidden md:block">GitHub</span>
+                  </Link>
+                </li>
+              )}
               {user.socials &&
                 user.socials.map((social) => {
                   const name = socials.find(
                     (soc) => soc.value === social.name
                   )?.name;
                   return (
-                    <li className="  md:pl-0 md:px-4 px-2 py-1 text-sm dark:bg-zinc-800 rounded-lg bg-zinc-100  m-0.5 md:w-36 text-gray-200">
+                    <li
+                      key={social.id}
+                      className="  md:pl-0 md:px-4 px-2 py-1 text-sm dark:bg-zinc-800 rounded-lg bg-zinc-100  m-0.5 md:w-36 text-gray-200"
+                    >
                       <Link
                         href={social.url}
                         target="_blank"
@@ -72,35 +77,23 @@ const User = ({
                     </li>
                   );
                 })}
-              <li className="  md:pl-0 md:px-4 px-2 py-1 text-sm dark:bg-zinc-800 rounded-lg bg-zinc-100  m-0.5 md:w-36 text-gray-200">
-                <Link
-                  href="/"
-                  className="flex flex-row items-center w-full text-xs text-gray-200 space-x-2"
-                >
-                  <Image
-                    src={"/linkedin.svg"}
-                    height={20}
-                    width={20}
-                    alt="LinkedIn"
-                  />
-                  <span className="hidden md:block">LinkedIn</span>
-                </Link>
-              </li>
 
-              <li className="  md:pl-0 md:px-4 px-2 py-1 text-sm dark:bg-zinc-800 rounded-lg bg-zinc-100  m-0.5 md:w-36 text-gray-200">
-                <Link
-                  href="/"
-                  className="flex flex-row items-center w-full text-xs text-gray-200 space-x-2"
-                >
-                  <Image
-                    src={"/twitch.svg"}
-                    height={20}
-                    width={20}
-                    alt="GitHub"
-                  />
-                  <span className="hidden md:block">Twitch</span>
-                </Link>
-              </li>
+              {user.channels?.twitchId && (
+                <li className="  md:pl-0 md:px-4 px-2 py-1 text-sm dark:bg-zinc-800 rounded-lg bg-zinc-100  m-0.5 md:w-36 text-gray-200">
+                  <Link
+                    href="/"
+                    className="flex flex-row items-center w-full text-xs text-gray-200 space-x-2"
+                  >
+                    <Image
+                      src={"/twitch.svg"}
+                      height={20}
+                      width={20}
+                      alt="GitHub"
+                    />
+                    <span className="hidden md:block">Twitch</span>
+                  </Link>
+                </li>
+              )}
               {user.channels?.youtubeId && (
                 <li className="  md:pl-0 md:px-4 px-2 py-1 text-sm dark:bg-zinc-800 rounded-lg bg-zinc-100  m-0.5 md:w-36 text-gray-200">
                   <Link
