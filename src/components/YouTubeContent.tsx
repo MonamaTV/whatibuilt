@@ -74,7 +74,7 @@ const YouTubeContent = ({ channelId }: { channelId: string | null }) => {
                   className="block p-1 dark:bg-zinc-700 bg-red-100 rounded-md"
                   alt="YouTube"
                 />
-                <p className=" text-zinc-700 dark:text-zinc-100 text-sm capitalize">
+                <p className="dark:text-gray-300 text-gray-500  text-sm  capitalize">
                   {snippet.title.slice(0, 65) + "..."}
                 </p>
                 <small className=" text-zinc-700 dark:text-zinc-300 text-sm flex items-center  "></small>

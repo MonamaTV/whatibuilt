@@ -21,7 +21,7 @@ const Repo = ({ repo, color }: { repo: Repos; color: string }) => {
           <span>{repo.name}</span>
         </Link>
       </p>
-      <small className="text-sm text-zinc-700 dark:text-zinc-300">
+      <small className="text-sm dark:text-gray-300 text-gray-500">
         {repo?.description?.slice(0, 100) + "..."}
       </small>
       {/* {repo.language && (
