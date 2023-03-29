@@ -1,9 +1,7 @@
 "use client";
-import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { githubClient } from "@/utils/axios";
 import { Repos } from "@/utils/types";
-import Link from "next/link";
 import YouTubeLoader from "./Loaders/YouTubeLoader";
 import { getColor } from "@/utils/colors";
 import Repo from "./Repo";

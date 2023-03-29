@@ -103,8 +103,11 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       },
     });
 
+    let newUser: User | unknown;
+    newUser = { ...user, publishedAt: null };
+
     return {
-      props: { user },
+      props: { user: newUser },
     };
   } catch (error) {
     return {
