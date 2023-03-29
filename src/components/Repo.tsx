@@ -7,7 +7,7 @@ const Repo = ({ repo, color }: { repo: Repos; color: string }) => {
   return (
     <div
       key={repo.id}
-      className="w-72 p-3 px-4 h-40 flex flex-shrink-0 flex-col border dark:border-zinc-800 border-zinc-100 rounded-lg gap-y-1"
+      className="w-72 p-3 px-4 h-40 flex flex-shrink-0 flex-col border dark:border-zinc-800 border-zinc-200 rounded-lg gap-y-1"
     >
       <Image
         src="/Github.svg"

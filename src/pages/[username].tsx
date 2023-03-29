@@ -18,7 +18,7 @@ const User = ({
               width={"140"}
               height={"140"}
               alt="Image"
-              className=" shadow"
+              className="object-cover rounded-lg shadow"
             />
           )}
           <div className="px-3">

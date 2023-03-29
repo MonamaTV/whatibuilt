@@ -63,7 +63,7 @@ const YouTubeContent = ({ channelId }: { channelId: string | null }) => {
           return (
             <div
               key={video.id}
-              className="w-56 md:w-96 md:h-36  flex flex-col md:flex-row py-3 flex-shrink-0 md:items-center justify-center border dark:border-zinc-800 border-zinc-100 px-3 rounded-lg gap-y-2"
+              className="w-56 md:w-96 md:h-36  flex flex-col md:flex-row py-3 flex-shrink-0 md:items-center justify-center border dark:border-zinc-800 border-zinc-200 px-3 rounded-lg gap-y-2"
             >
               <YouTubeImage url={snippet.thumbnails.medium.url} />
               <div className="md:pl-3">
