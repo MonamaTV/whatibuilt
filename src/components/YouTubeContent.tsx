@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Root } from "@/utils/types";
 import YouTubeLoader from "./Loaders/YouTubeLoader";
 import YouTubeImage from "./Image/Image";
+import Link from "next/link";
 const YouTubeContent = ({ channelId }: { channelId: string | null }) => {
   const [content, setContent] = useState<Root[]>([]);
   const fetchChannelUploadId = async () => {
@@ -74,9 +75,16 @@ const YouTubeContent = ({ channelId }: { channelId: string | null }) => {
                   className="block p-1 dark:bg-zinc-700 bg-red-100 rounded-md"
                   alt="YouTube"
                 />
-                <p className="dark:text-gray-300 text-gray-500  text-sm  capitalize">
+                <Link
+                  target={"_blank"}
+                  href={
+                    "https://www.youtube.com/watch?v=" +
+                    video.snippet.resourceId.videoId
+                  }
+                  className="dark:text-gray-300 text-gray-500  text-sm  capitalize"
+                >
                   {snippet.title.slice(0, 65) + "..."}
-                </p>
+                </Link>
                 <small className=" text-zinc-700 dark:text-zinc-300 text-sm flex items-center  "></small>
               </div>
             </div>
