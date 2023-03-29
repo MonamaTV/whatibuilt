@@ -7,7 +7,7 @@ const Repo = ({ repo, color }: { repo: Repos; color: string }) => {
   return (
     <div
       key={repo.id}
-      className="w-72 p-3 h-36 flex-shrink-0 border dark:border-zinc-800 border-zinc-300 "
+      className="w-72 p-3 h-36 flex-shrink-0 border dark:border-zinc-800 border-zinc-300 rounded-lg"
     >
       <h3 className="text-blue-500 font-semibold flex flex-row items-center gap-x-2">
         <Image src="/repo.png" width={"20"} height={"20"} alt="Github repo" />

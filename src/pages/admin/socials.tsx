@@ -95,7 +95,7 @@ const Socials = ({ socialAccounts }: { socialAccounts: Social[] }) => {
       </p>
       <select
         onChange={handleSelectInput}
-        className=" dark:bg-zinc-600 text-zinc-900  focus:ring-rose-50/10 focus:dark:bg-zinc-600 block w-full dark:dark:bg-zinc-600  dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-50/10 dark:focus:dark:bg-zinc-600 py-2 px-3 outline-none border border-zinc-300 dark:border-none text-sm"
+        className=" dark:bg-zinc-600 text-zinc-900  focus:ring-rose-50/10 focus:dark:bg-zinc-600 block w-full dark:dark:bg-zinc-600  dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-50/10 dark:focus:dark:bg-zinc-600 py-2 px-3 outline-none border border-zinc-300 dark:border-none text-sm rounded-lg"
       >
         <option value={"-1"}>Select</option>
         {data.map(({ name, value, id }) => (
@@ -109,7 +109,7 @@ const Socials = ({ socialAccounts }: { socialAccounts: Social[] }) => {
         onChange={handleUrlInput}
         type={"url"}
         required
-        className="w-full mb-2 px-4 py-2 text-sm dark:bg-zinc-600 outline-none dark:border-none border border-zinc-300 dark:text-zinc-100"
+        className="w-full mb-2 px-4 py-2 text-sm dark:bg-zinc-600 outline-none dark:border-none border border-zinc-300 dark:text-zinc-100 rounded-lg"
         placeholder="Paste here..."
       />
       {error ? <p className="text-red-600 text-xs my-1">{error}</p> : null}
@@ -117,7 +117,7 @@ const Socials = ({ socialAccounts }: { socialAccounts: Social[] }) => {
       <button
         onClick={handleAddSocial}
         disabled={loadingButton}
-        className="disabled:bg-zinc-800 disabled:text-zinc-600 disabled:cursor-not-allowed px-3 py-2 capitalize text-sm  bg-primary  md:w-44 w-full text-zinc-900 absolute right-0 block"
+        className="disabled:bg-zinc-800 disabled:text-zinc-600 disabled:cursor-not-allowed px-3 py-2 capitalize text-sm  bg-primary  md:w-44 w-full text-zinc-900 absolute right-0 block rounded-lg"
       >
         Add link
       </button>
@@ -137,7 +137,7 @@ const Socials = ({ socialAccounts }: { socialAccounts: Social[] }) => {
             <button
               key={social.id}
               onClick={(e) => handleRemoveSocial(e, social.id!)}
-              className="border disabled:bg-zinc-800 disabled:text-zinc-600 disabled:cursor-not-allowed dark:border-zinc-50 text-zinc-100 w-44 px-3 py-2 bg-background"
+              className="border disabled:bg-zinc-800 disabled:text-zinc-600 disabled:cursor-not-allowed dark:border-zinc-50 text-zinc-100 w-44 px-3 py-2 bg-background rounded-lg"
             >
               {socials.find((soc) => soc.value === social.name)?.name}
             </button>

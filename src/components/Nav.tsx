@@ -12,7 +12,7 @@ const Nav = ({ handleModal }: NavTypes) => {
         <li>
           <Link
             href={"/admin/links"}
-            className="flex flex-row items-center gap-x-2  px-4 md:py-2 text-primary hover:bg-primary hover:text-gray-100 md:w-32 justify-center transition-colors duration-300 ease-in-out text-sm"
+            className="flex flex-row items-center gap-x-2  px-4 md:py-2 text-primary hover:bg-primary hover:text-gray-100 md:w-32 justify-center transition-colors duration-300 ease-in-out text-sm rounded-lg"
           >
             <span>Publish</span>
           </Link>

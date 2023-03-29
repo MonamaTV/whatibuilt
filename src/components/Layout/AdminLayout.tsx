@@ -73,15 +73,15 @@ const AdminLayout = ({ children }: PropsWithChildren) => {
           closeModal={toggleModal}
         />
       )}
-      <div className="dark:bg-background min-h-screen min-w-screen flex flex-row pb-10 ">
-        <div className="container mx-auto md:w-[1200px] flex flex-col md:flex-row md:justify-center dark:md:bg-zinc-900 px-3.5 md:p-10  md:border dark:border-none min-h-full shadow-md">
+      <div className="dark:bg-background min-h-screen min-w-screen flex flex-row pb-10">
+        <div className="container mx-auto md:w-[1200px] flex flex-col md:flex-row md:justify-center dark:md:bg-zinc-900 px-3.5 md:p-10  md:border dark:border-none min-h-full shadow-md rounded-lg">
           <div className="md:w-[20%] w-full mt-3 ">
             <div className="relative">
               {session.data?.user?.image ? (
                 <ProfleImage source={session.data?.user?.image} />
               ) : (
                 <div
-                  className={`hidden md:block bg-zinc-800 w-[140px] h-[140px] animate-pulse`}
+                  className={`hidden md:block bg-zinc-800 w-[140px] h-[140px] animate-pulse rounded-lg`}
                 ></div>
               )}
               <button
@@ -112,7 +112,7 @@ const AdminLayout = ({ children }: PropsWithChildren) => {
               <li className="md:pl-0 md:px-4 px-2 py-1 text-sm md:w-36 my-1 dark:text-zinc-200">
                 <Link
                   href="/admin"
-                  className={`text-zinc-900 flex flex-row items-center text-xs  space-x-2  px-2 py-1 ${
+                  className={`rounded-lg text-zinc-900 flex flex-row items-center text-xs  space-x-2  px-2 py-1 ${
                     router.pathname === "/admin"
                       ? "bg-primary  dark:text-zinc-900"
                       : "dark:text-zinc-200"
@@ -124,7 +124,7 @@ const AdminLayout = ({ children }: PropsWithChildren) => {
               <li className="md:pl-0 md:px-4 px-2 py-1 text-sm md:w-36 my-1">
                 <Link
                   href="/admin/socials"
-                  className={`text-zinc-900 flex flex-row items-center text-xs  space-x-2  px-2 py-1 ${
+                  className={`rounded-lg text-zinc-900 flex flex-row items-center text-xs  space-x-2  px-2 py-1 ${
                     router.pathname === "/admin/socials"
                       ? "bg-primary  dark:text-zinc-900"
                       : "dark:text-zinc-200"
@@ -136,7 +136,7 @@ const AdminLayout = ({ children }: PropsWithChildren) => {
               <li className="md:pl-0 md:px-4 px-2 py-1 text-sm md:w-36 my-1 ">
                 <Link
                   href="/admin/integrations"
-                  className={`text-zinc-900 flex flex-row items-center text-xs  space-x-2  px-2 py-1 ${
+                  className={`rounded-lg text-zinc-900 flex flex-row items-center text-xs  space-x-2  px-2 py-1 ${
                     router.pathname === "/admin/integrations"
                       ? "bg-primary  dark:text-zinc-900"
                       : "dark:text-zinc-200"

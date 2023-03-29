@@ -11,7 +11,7 @@ import React from "react";
 import prisma from "../../../utils/prisma";
 const Integrations = ({ channels }: { channels: Channels }) => {
   return (
-    <div className="md:w-[70%] w-full space-y-3">
+    <div className="md:w-[70%] w-full space-y-3 ">
       <h3 className="text-2xl text-zinc-800 dark:text-zinc-100 font-serif my-2">
         Integrations
       </h3>
@@ -23,7 +23,7 @@ const Integrations = ({ channels }: { channels: Channels }) => {
       <div className="flex flex-col md:flex-row gap-2">
         <Link
           href="/api/twitch"
-          className="text-center px-3 py-2 capitalize text-sm  bg-purple-800 text-gray-100 "
+          className="text-center px-3 py-2 capitalize text-sm  bg-purple-800 text-gray-100 rounded-lg"
         >
           Connect Your Twitch
         </Link>

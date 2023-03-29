@@ -63,13 +63,22 @@ const YouTubeContent = ({ channelId }: { channelId: string | null }) => {
           return (
             <div
               key={video.id}
-              className="w-56 pb-2  flex-shrink-0 border dark:border-zinc-800 border-zinc-100"
+              className="w-96 h-36 flex flex-row py-3 flex-shrink-0 items-center border dark:border-zinc-800 border-zinc-100 px-3 rounded-lg"
             >
               <YouTubeImage url={snippet.thumbnails.medium.url} />
-              <p className="px-2 pt-3 text-zinc-700 dark:text-zinc-100 text-sm capitalize my-1">
-                {snippet.title.slice(0, 50) + "..."}
-              </p>
-              <small className="px-2 text-zinc-700 dark:text-zinc-300 text-xs flex items-center  "></small>
+              <div className="pl-3">
+                <Image
+                  src="/youtube.svg"
+                  width={30}
+                  height={30}
+                  alt="YouTube"
+                  className="px-1 bg-zinc-700 rounded"
+                />
+                <p className=" text-zinc-700 dark:text-zinc-100 text-xs capitalize">
+                  {snippet.title.slice(0, 100) + "..."}
+                </p>
+                <small className=" text-zinc-700 dark:text-zinc-300 text-xs flex items-center  "></small>
+              </div>
             </div>
           );
         })}
