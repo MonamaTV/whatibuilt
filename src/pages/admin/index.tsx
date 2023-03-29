@@ -104,7 +104,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     });
 
     let newUser: User | unknown;
-    newUser = { ...user, publishedAt: null };
+    newUser = { ...user, publishedAt: user?.publishedAt.toString() };
 
     return {
       props: { user: newUser },

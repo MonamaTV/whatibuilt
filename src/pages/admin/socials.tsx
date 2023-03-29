@@ -11,7 +11,7 @@ import { authOptions } from "../api/auth/[...nextauth]";
 const Socials = ({ socialAccounts }: { socialAccounts: Social[] }) => {
   const [addedSocials, setAddedSocials] =
     useState<Partial<Social>[]>(socialAccounts);
-  const [data, setData] = useState(socials);
+  const [data, _] = useState(socials);
 
   const [url, setUrl] = useState<string>("");
   const [value, setValue] = useState<string>("");
@@ -117,7 +117,7 @@ const Socials = ({ socialAccounts }: { socialAccounts: Social[] }) => {
       <button
         onClick={handleAddSocial}
         disabled={loadingButton}
-        className="disabled:bg-zinc-800 disabled:text-zinc-600 disabled:cursor-not-allowed px-3 py-2 capitalize text-sm  bg-primary  md:w-44 w-full text-zinc-900 absolute right-0 block rounded-lg"
+        className="disabled:bg-zinc-800 disabled:text-zinc-600 disabled:cursor-not-allowed px-3 py-2 capitalize text-sm  bg-primary  md:w-44 w-full text-zinc-100 absolute right-0 block rounded-lg"
       >
         Add link
       </button>

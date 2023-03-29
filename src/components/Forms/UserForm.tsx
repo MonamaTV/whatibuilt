@@ -43,7 +43,7 @@ const UserForm = ({ handleSubmit, user, state }: FormProps) => {
           ) : null}
           <button
             disabled={!dirty || state}
-            className="text-zinc-900 px-3 py-2 capitalize text-sm bg-primary  w-44 disabled:bg-zinc-800 disabled:text-zinc-600 disabled:cursor-not-allowed rounded-lg"
+            className="text-zinc-100 px-3 py-2 capitalize text-sm bg-primary  w-44 disabled:bg-zinc-800 disabled:text-zinc-600 disabled:cursor-not-allowed rounded-lg"
             type="submit"
           >
             Save

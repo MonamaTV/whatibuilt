@@ -96,7 +96,7 @@ const AdminLayout = ({ children }: PropsWithChildren) => {
                 />
               </button>
             </div>
-            <ul className="flex flex-row md:flex-col justify-around border md:border-none mb-2 border-zinc-300 rounded-lg items-center md:items-start">
+            <ul className="flex flex-row md:flex-col justify-around border md:border-none mb-2 border-zinc-300 dark:border-zinc-800 rounded-lg items-center md:items-start">
               <li className="md:pl-0 md:px-4 px-2 py-1 text-sm md:w-36 my-1 dark:text-zinc-200">
                 {session.data?.user?.image ? (
                   <Image
@@ -114,7 +114,7 @@ const AdminLayout = ({ children }: PropsWithChildren) => {
                   href="/admin"
                   className={`rounded-md text-zinc-900 flex flex-row items-center text-xs  space-x-2  px-2 py-1 ${
                     router.pathname === "/admin"
-                      ? "bg-primary  dark:text-zinc-900"
+                      ? "bg-primary  dark:text-zinc-100"
                       : "dark:text-zinc-200"
                   }`}
                 >
@@ -126,7 +126,7 @@ const AdminLayout = ({ children }: PropsWithChildren) => {
                   href="/admin/socials"
                   className={`rounded-md text-zinc-900 flex flex-row items-center text-xs  space-x-2  px-2 py-1 ${
                     router.pathname === "/admin/socials"
-                      ? "bg-primary  dark:text-zinc-900"
+                      ? "bg-primary  dark:text-zinc-100"
                       : "dark:text-zinc-200"
                   }`}
                 >
@@ -138,7 +138,7 @@ const AdminLayout = ({ children }: PropsWithChildren) => {
                   href="/admin/integrations"
                   className={`rounded-md text-zinc-900 flex flex-row items-center text-xs  space-x-2  px-2 py-1 ${
                     router.pathname === "/admin/integrations"
-                      ? "bg-primary  dark:text-zinc-900"
+                      ? "bg-primary  dark:text-zinc-100"
                       : "dark:text-zinc-200"
                   }`}
                 >

@@ -13,6 +13,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
 
   if (req.method === "PUT") {
     try {
+      console.log(req.body);
       const session = await getServerSession(req, res, authOptions);
 
       const user = await prisma.user.update({
@@ -38,6 +39,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
         data: user,
       });
     } catch (error) {
+      console.log(error);
       res.status(400).json({
         message: "Couldn't process your request",
         code: 400,
