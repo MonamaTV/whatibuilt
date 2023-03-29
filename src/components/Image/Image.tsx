@@ -8,7 +8,7 @@ const YouTubeImage = ({ url }: { url: string }) => {
       src={url}
       width={"200"}
       height={"50"}
-      className={`object-cover rounded-lg duration-700 ease-in-out ${
+      className={`object-cover rounded-lg duration-700 ease-in-out w-24 md:w-[200px] ${
         loading ? "grayscale blur-2xl scale-110" : ""
       }`}
       alt="Youtube thumbnalil"

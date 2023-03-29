@@ -7,22 +7,28 @@ const Repo = ({ repo, color }: { repo: Repos; color: string }) => {
   return (
     <div
       key={repo.id}
-      className="w-72 p-3 h-36 flex-shrink-0 border dark:border-zinc-800 border-zinc-300 rounded-lg"
+      className="w-72 p-3 px-4 h-40 flex flex-shrink-0 flex-col border dark:border-zinc-800 border-zinc-100 rounded-lg gap-y-1"
     >
-      <h3 className="text-blue-500 font-semibold flex flex-row items-center gap-x-2">
-        <Image src="/repo.png" width={"20"} height={"20"} alt="Github repo" />
+      <Image
+        src="/Github.svg"
+        width={"30"}
+        height={"30"}
+        className="block p-1 dark:bg-zinc-700 bg-zinc-100 rounded-md"
+        alt="Github repo"
+      />
+      <p className="dark:text-zinc-200 text-zinc-900 text-lg flex flex-row items-center gap-x-2">
         <Link href={repo.html_url} target="_blank">
           <span>{repo.name}</span>
         </Link>
-      </h3>
-      <small className="text-sm dark:text-zinc-300">
+      </p>
+      <small className="text-sm text-zinc-700 dark:text-zinc-300">
         {repo?.description?.slice(0, 100) + "..."}
       </small>
-      {repo.language && (
+      {/* {repo.language && (
         <small className="text-xs text-zinc-400  flex flex-row items-center my-1 gap-x-2">
           <div className={color.toString()}></div> Written in {repo.language}
         </small>
-      )}
+      )} */}
     </div>
   );
 };

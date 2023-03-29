@@ -27,7 +27,7 @@ const GitHubContent = ({ githubId }: { githubId: string | null }) => {
 
   return repos.length > 0 ? (
     <div className="w-full">
-      <h3 className="text-xl text-gray-500 dark:text-zinc-100 font-serif my-2">
+      <h3 className="text-xl text-zinc-900 dark:text-zinc-100 font-serif my-2">
         GitHub
       </h3>
       <div className="flex flex-row overflow-x-auto gap-x-3 w-full">
@@ -35,7 +35,8 @@ const GitHubContent = ({ githubId }: { githubId: string | null }) => {
           const color: string =
             `bg-[${getColor(repo.language) ?? "#f4f4f4"}]` +
             " w-3 h-3 rounded-full";
-          console.log(repo.language, color);
+          console.log(repo.issue_comment_url);
+
           return <Repo key={repo.id} repo={repo} color={color} />;
         })}
       </div>
