@@ -62,7 +62,7 @@ const User = ({
                         className="flex flex-row items-center w-full text-xs text-gray-200 space-x-2"
                       >
                         <Image
-                          src={`/${name}.svg`}
+                          src={`/${name?.toLowerCase()}.svg`}
                           height={20}
                           width={20}
                           alt="LinkedIn"
