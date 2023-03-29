@@ -1,5 +1,6 @@
 import useDebounce from "@/hooks/useDebounce";
 import { axiosClient } from "@/utils/axios";
+import client from "@/utils/prisma";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { getServerSession } from "next-auth";
 import { getProviders, signIn } from "next-auth/react";
@@ -97,7 +98,13 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   if (!session) {
     return { redirect: { destination: "/auth/login", permanent: false } };
   }
-  if (session.user?.username) {
+
+  const user = await client.user.findUnique({
+    where: {
+      id: session.user?.id,
+    },
+  });
+  if (user?.username) {
     return { redirect: { destination: "/admin/" } };
   }
 
