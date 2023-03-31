@@ -1,9 +1,11 @@
 import { signOut } from "next-auth/react";
 import Link from "next/link";
+import { useTheme } from "next-themes";
 type NavTypes = {
   handleModal: () => void;
 };
 const Nav = ({ handleModal }: NavTypes) => {
+  const { theme, setTheme } = useTheme();
   return (
     <nav className="flex flex-row justify-around py-6 dark:bg-background dark:text-gray-100">
       <p className="md:text-xl text-normal font-bold font-serif">WhatIBuilt</p>
@@ -12,21 +14,27 @@ const Nav = ({ handleModal }: NavTypes) => {
         <li>
           <Link
             href={"/admin/links"}
-            className="flex flex-row items-center gap-x-2  px-4 md:py-2 text-primary hover:bg-primary hover:text-gray-100 md:w-32 justify-center transition-colors duration-300 ease-in-out text-sm rounded-lg"
+            className="flex flex-row items-center gap-x-2  px-1 md:py-1 dark:text-white text-zinc-800 hover:bg-primary hover:text-gray-100 md:w-24 justify-center transition-colors duration-300 ease-in-out text-sm rounded-lg"
           >
             <span>Publish</span>
           </Link>
         </li>
         <li className="relative">
           <span className="peer flex flex-row items-center gap-x-2 text-sm">
-            Profile
+            Settings
           </span>
-          <div className="hover:flex peer-hover:flex hidden absolute w-32 px-1 bg-background dark:bg-zinc-50  flex-col justify-start py-4 gap-y-0 right-0 shadow ">
+          <div className="hover:flex peer-hover:flex hidden absolute w-36 px-1 bg-zinc-900 dark:bg-zinc-50/10  flex-col justify-start py-4 gap-y-1 right-0 shadow rounded-lg">
             <button
               onClick={handleModal}
-              className="text-sm text-start px-2 py-1 w-full text-primary dark:text-zinc-900"
+              className="text-xs text-start px-2 py-1 w-full text-white dark:text-zinc-200 rounded-md hover:bg-primary "
             >
               Change profile
+            </button>
+            <button
+              onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+              className="text-xs text-start px-2 py-1 w-full text-white dark:text-zinc-200 rounded-md hover:bg-primary "
+            >
+              Toggle mode
             </button>
             <button
               onClick={() =>
@@ -34,7 +42,7 @@ const Nav = ({ handleModal }: NavTypes) => {
                   callbackUrl: "/auth/login",
                 })
               }
-              className="text-sm text-start px-2 py-1 w-full text-primary dark:text-zinc-900"
+              className="text-xs text-start px-2 py-1 w-full text-white dark:text-zinc-200 rounded-md hover:bg-primary "
             >
               Logout
             </button>

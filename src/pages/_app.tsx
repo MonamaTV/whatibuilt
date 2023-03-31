@@ -4,6 +4,7 @@ import type { AppProps } from "next/app";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
 import AdminLayout from "@/components/Layout/AdminLayout";
+import { ThemeProvider } from "next-themes";
 
 const queryClient = new QueryClient();
 
@@ -17,14 +18,20 @@ export default function App({
     return (
       <SessionProvider session={session}>
         <QueryClientProvider client={queryClient}>
-          <AdminLayout>
-            <Component {...pageProps} />
-          </AdminLayout>
+          <ThemeProvider enableSystem={true} attribute="class">
+            <AdminLayout>
+              <Component {...pageProps} />
+            </AdminLayout>
+          </ThemeProvider>
           <Toaster position="top-center" reverseOrder={false} />
         </QueryClientProvider>
       </SessionProvider>
     );
   }
 
-  return <Component {...pageProps} />;
+  return (
+    <ThemeProvider enableSystem={true} attribute="class">
+      <Component {...pageProps} />
+    </ThemeProvider>
+  );
 }

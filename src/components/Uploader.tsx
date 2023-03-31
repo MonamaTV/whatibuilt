@@ -55,10 +55,10 @@ const Uploader = ({
     handleFile(file);
   };
   return (
-    <div className="fixed top-0 left-0 w-screen min-h-screen bg-zinc-500/75 z-10 flex flex-col items-center justify-center transition-all px-3.5 shadow-lg shadow-white">
+    <div className="fixed top-0 left-0 w-screen min-h-screen bg-zinc-500/75 z-10 flex flex-col items-center justify-center transition-all px-3.5 shadow-lg shadow-white ">
       <button
         onClick={closeModal}
-        className="border border-red-500 px-3 py-1 relative text-red-500 top-10 md:left-[408px] left-[138px] hover:bg-red-500 hover:text-white transition-colors ease-in-out duration-200"
+        className="border border-red-500 px-3 py-1 relative text-red-500 top-10 md:left-[408px] left-[138px] hover:bg-red-500 hover:text-white transition-colors ease-in-out duration-200 rounded-md text-sm"
       >
         Close
       </button>
@@ -68,7 +68,7 @@ const Uploader = ({
         onDrop={handleDrop}
         htmlFor="upload"
         id="dropzone"
-        className="border-dashed w-full md:w-[900px] h-[600px] bg-background flex flex-col justify-center items-center space-y-3 cursor-pointer hover:cursor-copy border-primary"
+        className="border-dashed w-full md:w-[900px] h-[600px] bg-background flex flex-col justify-center items-center space-y-3 cursor-pointer hover:cursor-copy border-primary rounded-lg"
       >
         {!file ? (
           <>
@@ -81,10 +81,16 @@ const Uploader = ({
           </>
         ) : (
           <>
-            <Image src={fileUrl ?? ""} width="300" height={"300"} alt="Image" />
+            <Image
+              src={fileUrl ?? ""}
+              width="300"
+              height={"300"}
+              alt="Image"
+              className="rounded-lg"
+            />
             <button
               onClick={handleUpload}
-              className="bg-primary text-zinc-900 px-3 py-2 w-[300px] text-center md:w-1/3 disabled:bg-zinc-800 disabled:text-zinc-600 disabled:cursor-not-allowed"
+              className="bg-primary text-zinc-200 px-3 py-2 w-[300px] text-center md:w-1/3 disabled:bg-zinc-800 disabled:text-zinc-600 disabled:cursor-not-allowed rounded-lg"
             >
               Upload
             </button>
