@@ -5,10 +5,35 @@ import Link from "next/link";
 import YouTubeContent from "@/components/YouTubeContent";
 import GitHubContent from "@/components/GitHubContent";
 import { socials } from "@/utils/types";
+import { useRouter } from "next/router";
 
 const User = ({
   user,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  const router = useRouter();
+
+  if (user === null) {
+    return (
+      <div className="dark:bg-background min-h-screen min-w-screen flex flex-col justify-center items-center py-10 gap-y-2">
+        <h1 className="text-5xl font-bold font-serif dark:text-zinc-100">
+          WhatIBuilt
+        </h1>
+        <br />
+        <p className="px-10 text-sm text-zinc-100">
+          Username does not exist... You can claim it.
+        </p>
+        <input
+          type={"text"}
+          value={router.query.username}
+          className="px-3 py-1 border w-80 md:w-96 dark:bg-zinc-600 border-zinc-200 dark:border-zinc-800 text-white outline-none"
+        />
+        <button className="bg-primary w-80 md:w-96 text-center px-3 py-1 text-white ">
+          Claim it!
+        </button>
+      </div>
+    );
+  }
+
   return (
     <div className="dark:bg-background min-h-screen min-w-screen flex flex-row md:justify-center md:items-center py-10">
       <div className="container mx-auto md:w-[1200px] flex flex-col md:flex-row md:justify-center md:bg-zinc-50/10 px-4 md:p-10 md:border dark:border-none rounded-lg">
@@ -23,7 +48,7 @@ const User = ({
             />
           )}
           <div className="px-3">
-            <h3 className="font-bold text-xl font-serif md:hidden text-zinc-700 dark:text-zinc-100">
+            <h3 className="font-bold text-xl font-serif md:hidden text-zinc-500 dark:text-zinc-100">
               {user.name}
             </h3>
             <p className="md:my-2 font-serif dark:text-zinc-100 text-zinc-700">
@@ -140,19 +165,27 @@ const User = ({
 };
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const username = context.query?.username as string;
-  const user = await prisma.user.findUnique({
-    where: {
-      username: username,
-    },
-    include: {
-      channels: true,
-      socials: true,
-    },
-  });
-  return {
-    props: { user: { ...user, publishedAt: null } },
-  };
+  try {
+    const username = context.query?.username as string;
+    const user = await prisma.user.findUnique({
+      where: {
+        username: username,
+      },
+      include: {
+        channels: true,
+        socials: true,
+      },
+    });
+
+    return {
+      props: { user: { ...user, publishedAt: null } },
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      props: { user: null },
+    };
+  }
 }
 
 export default User;

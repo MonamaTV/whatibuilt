@@ -127,7 +127,7 @@ const Socials = ({ socialAccounts }: { socialAccounts: Social[] }) => {
 
       {addedSocials.length > 0 && (
         <>
-          <h4 className="text-xl  text-zinc-800 dark:text-rose-100 font-serif my-2 mt-3">
+          <h4 className="text-xl  text-zinc-800 dark:text-rose-100 font-serif my-2 mt-2">
             Added
           </h4>
           <p className="text-sm dark:text-zinc-100 text-zinc-700">
@@ -137,7 +137,7 @@ const Socials = ({ socialAccounts }: { socialAccounts: Social[] }) => {
             <button
               key={social.id}
               onClick={(e) => handleRemoveSocial(e, social.id!)}
-              className="border disabled:bg-zinc-800 disabled:text-zinc-600 disabled:cursor-not-allowed dark:border-zinc-50 text-zinc-100 w-44 px-3 py-2 bg-background rounded-lg"
+              className="border disabled:bg-zinc-800 disabled:text-zinc-600 disabled:cursor-not-allowed dark:border-zinc-50 text-zinc-100 w-44 px-3 py-2 mr-2 bg-background rounded-lg"
             >
               {socials.find((soc) => soc.value === social.name)?.name}
             </button>

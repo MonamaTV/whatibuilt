@@ -114,10 +114,15 @@ const AdminLayout = ({ children }: PropsWithChildren) => {
                   href="/admin"
                   className={`rounded-md  flex flex-row items-center text-xs  space-x-2  px-2 py-1 ${
                     router.pathname === "/admin"
-                      ? "bg-primary  text-zinc-100"
+                      ? "text-primary"
                       : "dark:text-zinc-200 text-zinc-900"
                   }`}
                 >
+                  {router.pathname === "/admin" ? (
+                    <Image src="/auser.png" height={15} width={15} alt="User" />
+                  ) : (
+                    <Image src="/user.png" height={15} width={15} alt="User" />
+                  )}
                   <span className="md:block">Profile</span>
                 </Link>
               </li>
@@ -126,10 +131,25 @@ const AdminLayout = ({ children }: PropsWithChildren) => {
                   href="/admin/socials"
                   className={`rounded-md  flex flex-row items-center text-xs  space-x-2  px-2 py-1 ${
                     router.pathname === "/admin/socials"
-                      ? "bg-primary  text-zinc-100"
+                      ? "text-primary"
                       : "dark:text-zinc-200 text-zinc-900"
                   }`}
                 >
+                  {router.pathname === "/admin/socials" ? (
+                    <Image
+                      src="/asocial.png"
+                      height={15}
+                      width={15}
+                      alt="User"
+                    />
+                  ) : (
+                    <Image
+                      src="/social.png"
+                      height={15}
+                      width={15}
+                      alt="User"
+                    />
+                  )}
                   <span className="md:block">Socials</span>
                 </Link>
               </li>
@@ -138,10 +158,25 @@ const AdminLayout = ({ children }: PropsWithChildren) => {
                   href="/admin/integrations"
                   className={`rounded-md  flex flex-row items-center text-xs  space-x-2  px-2 py-1 ${
                     router.pathname === "/admin/integrations"
-                      ? "bg-primary text-zinc-100"
+                      ? "text-primary"
                       : "dark:text-zinc-200 text-zinc-900"
                   }`}
                 >
+                  {router.pathname === "/admin/integrations" ? (
+                    <Image
+                      src="/asettings.png"
+                      height={15}
+                      width={15}
+                      alt="User"
+                    />
+                  ) : (
+                    <Image
+                      src="/settings.png"
+                      height={15}
+                      width={15}
+                      alt="User"
+                    />
+                  )}
                   <span className="md:block">Integration</span>
                 </Link>
               </li>
