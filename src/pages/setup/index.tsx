@@ -74,7 +74,7 @@ const Identifier = () => {
         value={username}
         required
         onChange={handleUsername}
-        className="border px-3 dark:bg-zinc-600 border-zinc-300 py-2 w-80 md:w-96 dark:border-none outline-none focus:border-zinc-300 text-sm"
+        className="border dark:bg-zinc-600 border-zinc-300 px-3 py-3 w-80 md:w-96 dark:border-none outline-none focus:border-zinc-300 text-sm"
         placeholder="Username"
       />
       {exists && (
@@ -84,7 +84,7 @@ const Identifier = () => {
       )}
       <button
         onClick={handleAddUsername}
-        className="px-3  py-2 bg-primary text-gray-900 font-semibold hover:cursor-pointer w-80 md:w-96 text-center text-sm hover:bg-primary transition-colors"
+        className="px-3 py-3 bg-primary text-gray-900 font-semibold hover:cursor-pointer w-80 md:w-96 text-center text-sm hover:bg-primary transition-colors"
       >
         Finish
       </button>

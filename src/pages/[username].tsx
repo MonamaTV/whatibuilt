@@ -19,15 +19,15 @@ const User = ({
           WhatIBuilt
         </h1>
         <br />
-        <p className="px-10 text-sm text-zinc-100">
+        <p className="px-10 text-sm dark:text-zinc-100">
           Username does not exist... You can claim it.
         </p>
         <input
           type={"text"}
           value={router.query.username}
-          className="px-3 py-1 border w-80 md:w-96 dark:bg-zinc-600 border-zinc-200 dark:border-zinc-800 text-white outline-none"
+          className="px-3 py-2 rounded-lg border w-80 md:w-96 dark:bg-zinc-600 border-zinc-200 dark:border-zinc-800 text-zinc-800 outline-none"
         />
-        <button className="bg-primary w-80 md:w-96 text-center px-3 py-1 text-white ">
+        <button className="bg-primary w-80 md:w-96 text-center px-3 py-2 rounded-lg text-white ">
           Claim it!
         </button>
       </div>
@@ -176,6 +176,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         socials: true,
       },
     });
+
+    if (!user) return { props: { user: null } };
 
     return {
       props: { user: { ...user, publishedAt: null } },
