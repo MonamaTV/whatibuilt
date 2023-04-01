@@ -5,6 +5,7 @@ import { Social } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import { GetServerSidePropsContext } from "next";
 import { getServerSession } from "next-auth";
+import Image from "next/image";
 import { useState } from "react";
 import { authOptions } from "../api/auth/[...nextauth]";
 
@@ -133,15 +134,24 @@ const Socials = ({ socialAccounts }: { socialAccounts: Social[] }) => {
           <p className="text-sm dark:text-zinc-100 text-zinc-700">
             Click if you want to remove
           </p>
-          {addedSocials.map((social) => (
-            <button
-              key={social.id}
-              onClick={(e) => handleRemoveSocial(e, social.id!)}
-              className="border disabled:bg-zinc-800 disabled:text-zinc-600 disabled:cursor-not-allowed dark:border-zinc-50 text-zinc-100 w-44 px-3 py-2 mr-2 bg-background rounded-lg"
-            >
-              {socials.find((soc) => soc.value === social.name)?.name}
-            </button>
-          ))}
+          {addedSocials.map((social) => {
+            const name = socials.find((soc) => soc.value === social.name)?.name;
+            return (
+              <button
+                key={social.id}
+                onClick={(e) => handleRemoveSocial(e, social.id!)}
+                className="border disabled:bg-zinc-800 disabled:text-zinc-600 disabled:cursor-not-allowed border-zinc-300 text-zinc-800 w-44 px-3 py-2 mr-2  rounded-lg flex flex-row items-center justify-center gap-x-2 dark:text-zinc-200 hover:bg-primary hover:text-zinc-200"
+              >
+                <Image
+                  height={20}
+                  width={20}
+                  src={`/${name}.svg`}
+                  alt={name ?? "Social"}
+                />
+                <span>{name}</span>
+              </button>
+            );
+          })}
         </>
       )}
     </div>
