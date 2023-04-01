@@ -13,9 +13,8 @@ import { authOptions } from "../api/auth/[...nextauth]";
 const Dashboard = ({
   user,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  if (!user) return null;
   const [loading, setLoading] = useState(false);
-  const newUser = JSON.parse(user) as User;
+
   const mutation = useMutation({
     mutationFn: (user: Partial<User>) => {
       return updateUser(user);
@@ -36,6 +35,8 @@ const Dashboard = ({
     mutation.mutate(user);
   };
 
+  if (!user) return null;
+  const newUser = JSON.parse(user) as User;
   return (
     <div className="md:w-[70%] w-full space-y-3 ">
       <h3 className="text-2xl text-zinc-800 dark:text-zinc-100 font-serif my-2">
