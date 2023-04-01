@@ -145,7 +145,7 @@ const Socials = ({ socialAccounts }: { socialAccounts: Social[] }) => {
                 <Image
                   height={20}
                   width={20}
-                  src={`/${name}.svg`}
+                  src={`/${name?.toLowerCase()}.svg`}
                   alt={name ?? "Social"}
                 />
                 <span>{name}</span>
