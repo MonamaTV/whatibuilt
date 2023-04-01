@@ -5,14 +5,17 @@ import { updateUser } from "@/services/user";
 import prisma from "@/utils/prisma";
 import { User } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
-import { GetServerSidePropsContext } from "next";
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { getServerSession } from "next-auth";
 import { useState } from "react";
 import { authOptions } from "../api/auth/[...nextauth]";
 
-const Dashboard = ({ user }: { user: User }) => {
+const Dashboard = ({
+  user,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  if (!user) return null;
   const [loading, setLoading] = useState(false);
-
+  const newUser = JSON.parse(user) as User;
   const mutation = useMutation({
     mutationFn: (user: Partial<User>) => {
       return updateUser(user);
@@ -42,9 +45,13 @@ const Dashboard = ({ user }: { user: User }) => {
         These details that will be shown to people who visits your page
       </p>
       <p className="w-full border-none dark:border-none text-sm  px-1 py-2 dark:bg-inherit outline-none  dark:text-zinc-300 text-zinc-700">
-        {"@" + user?.username ?? ""}
+        {"@" + newUser?.username ?? ""}
       </p>
-      <UserForm handleSubmit={handleUpdateUser} user={user} state={loading} />
+      <UserForm
+        handleSubmit={handleUpdateUser}
+        user={newUser}
+        state={loading}
+      />
       {/* <input
         name="name"
         type={"text"}
@@ -103,11 +110,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       },
     });
 
-    let newUser: User | unknown;
-    newUser = { ...user, publishedAt: user?.publishedAt.toString() };
-
     return {
-      props: { user: newUser },
+      props: { user: JSON.stringify(user) },
     };
   } catch (error) {
     return {

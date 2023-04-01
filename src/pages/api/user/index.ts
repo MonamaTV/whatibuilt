@@ -13,7 +13,6 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
 
   if (req.method === "PUT") {
     try {
-      console.log(req.body);
       const session = await getServerSession(req, res, authOptions);
 
       const user = await prisma.user.update({
