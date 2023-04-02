@@ -16,7 +16,7 @@ const Repo = ({ repo }: { repo: Repos }) => {
         className="block p-1 dark:bg-zinc-700 bg-zinc-100 rounded-md"
         alt="Github repo"
       />
-      <p className="dark:text-zinc-200 text-zinc-900 text-lg flex flex-row items-center gap-x-2">
+      <p className="dark:text-zinc-200 text-zinc-800 text-lg flex flex-row items-center gap-x-2">
         <Link href={repo.html_url} target="_blank">
           <span>{repo.name}</span>
         </Link>

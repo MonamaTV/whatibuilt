@@ -26,7 +26,7 @@ const GitHubContent = ({ githubId }: { githubId: string | null }) => {
 
   return repos.length > 0 ? (
     <div className="w-full">
-      <h3 className="text-xl text-zinc-900 dark:text-zinc-100 font-serif my-2">
+      <h3 className="text-xl text-zinc-700 dark:text-zinc-100 font-serif my-2">
         GitHub
       </h3>
       <div className="flex flex-row overflow-x-auto gap-x-3 w-full">

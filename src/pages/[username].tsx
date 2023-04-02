@@ -48,7 +48,7 @@ const User = ({
             />
           )}
           <div className="px-3">
-            <h3 className="font-bold text-xl font-serif md:hidden text-zinc-500 dark:text-zinc-100">
+            <h3 className="font-bold text-xl font-serif md:hidden text-zinc-700 dark:text-zinc-100">
               {user.name}
             </h3>
             <p className="md:my-2 font-serif dark:text-zinc-100 text-zinc-700">

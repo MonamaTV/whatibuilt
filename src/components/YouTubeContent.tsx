@@ -51,7 +51,7 @@ const YouTubeContent = ({ channelId }: { channelId: string | null }) => {
   //   const scroll = useScroll();
   return content.length > 0 ? (
     <div className="w-full">
-      <h3 className="text-xl text-zinc-800 dark:text-zinc-100 font-serif my-2">
+      <h3 className="text-xl text-zinc-700 dark:text-zinc-100 font-serif my-2">
         YouTube
       </h3>
       <div
