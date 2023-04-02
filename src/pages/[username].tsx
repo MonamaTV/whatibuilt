@@ -162,7 +162,7 @@ const User = ({
       </div>
 
       <div className="flex  justify-center text-center my-4 mt-24 flex-col">
-        <p className="text-sm text-zinc-800">
+        <p className="text-sm dark:text-zinc-300 text-zinc-800">
           Create your <span className="font-serif font-bold ">WhatIBuilt </span>
           profile
         </p>
