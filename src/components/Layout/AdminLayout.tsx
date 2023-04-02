@@ -74,7 +74,7 @@ const AdminLayout = ({ children }: PropsWithChildren) => {
         />
       )}
       <div className="dark:bg-background min-h-screen min-w-screen flex flex-row pb-10">
-        <div className="container mx-auto md:w-[1200px] flex flex-col md:flex-row md:justify-center dark:md:bg-zinc-900 px-3.5 md:p-10  md:border dark:border-none min-h-full shadow-md rounded-lg">
+        <div className="container mx-auto md:w-[1200px] flex flex-col md:flex-row md:justify-center  px-3.5 md:p-10  md:border dark:border-none min-h-full shadow-md rounded-lg">
           <div className="md:w-[20%] w-full mt-3 ">
             <div className="relative">
               {session.data?.user?.image ? (

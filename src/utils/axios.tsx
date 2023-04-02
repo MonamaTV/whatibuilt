@@ -8,6 +8,7 @@ export const axiosClient = (): AxiosInstance => {
   });
 };
 
+//YouTube clients
 export const youtubeClient = () => {
   return axios.create({
     baseURL: "https://youtube.googleapis.com/youtube/v3/channels",
@@ -18,7 +19,6 @@ export const youtubeClient = () => {
     },
   });
 };
-
 export const youtubeAuthClient = () => {
   const uri =
     process.env.NODE_ENV === "development"
@@ -42,10 +42,17 @@ export const youtubeTokenClient = () => {
     },
   });
 };
+
+//Twitch clients
+export const twitchClient = () => {
+  return axios.create({
+    baseURL: "https://api.twitch.tv/helix",
+  });
+};
 export const twitchAuthClient = () => {
   const uri =
     process.env.NODE_ENV === "development"
-      ? "http://localhost:3000/admin/integrations/youtube"
+      ? "http://localhost:3000/admin/integrations/twitch"
       : process.env.TWITCH_REDIRECT_URI;
   return axios.create({
     baseURL: process.env.TWITCH_OAUTH,
@@ -57,7 +64,6 @@ export const twitchAuthClient = () => {
     },
   });
 };
-
 export const twitchTokenClient = () => {
   return axios.create({
     baseURL: "https://id.twitch.tv/oauth2/token",
@@ -66,6 +72,8 @@ export const twitchTokenClient = () => {
     },
   });
 };
+
+// GitHub axio clients
 export const githubAuthClient = () => {
   return axios.create({
     baseURL: process.env.GITHUB_OAUTH + "/authorize",
@@ -80,7 +88,6 @@ export const githubTokenClient = () => {
     baseURL: process.env.GITHUB_OAUTH + "/access_token",
   });
 };
-
 export const githubClient = () => {
   return axios.create({
     baseURL: "https://api.github.com",

@@ -14,13 +14,13 @@ const Nav = ({ handleModal }: NavTypes) => {
         <li>
           <Link
             href={"/admin/links"}
-            className="flex flex-row items-center gap-x-2  px-1 md:py-1 dark:text-white text-zinc-800 hover:bg-primary hover:text-gray-100 md:w-24 justify-center transition-colors duration-300 ease-in-out text-sm rounded-lg"
+            className="flex flex-row items-center gap-x-2  px-1 md:py-1 dark:text-white text-zinc-800 hover:bg-primary hover:text-gray-100 md:w-24 justify-center transition-colors duration-300 ease-in-out text-xs rounded-lg"
           >
             <span>Publish</span>
           </Link>
         </li>
         <li className="relative">
-          <span className="peer flex flex-row items-center gap-x-2 text-sm">
+          <span className="peer flex flex-row items-center gap-x-2 text-xs">
             Settings
           </span>
           <div className="hover:flex peer-hover:flex hidden absolute w-36 px-1 bg-zinc-900 dark:bg-zinc-50/10  flex-col justify-start py-4 gap-y-1 right-0 shadow rounded-lg">

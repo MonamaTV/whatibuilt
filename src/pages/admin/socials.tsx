@@ -140,7 +140,7 @@ const Socials = ({ socialAccounts }: { socialAccounts: Social[] }) => {
               <button
                 key={social.id}
                 onClick={(e) => handleRemoveSocial(e, social.id!)}
-                className="border disabled:bg-zinc-800 disabled:text-zinc-600 disabled:cursor-not-allowed border-zinc-300 text-zinc-800 w-44 px-3 py-2 mr-2  rounded-lg flex flex-row items-center justify-center gap-x-2 dark:text-zinc-200 hover:bg-primary hover:text-zinc-200"
+                className="border disabled:bg-zinc-800 disabled:text-zinc-600 disabled:cursor-not-allowed border-zinc-300 text-zinc-700 w-44 px-3 py-1 text-sm mr-2  rounded-lg flex flex-row items-center justify-center gap-x-2 dark:text-zinc-200 hover:bg-primary hover:text-zinc-200"
               >
                 <Image
                   height={20}

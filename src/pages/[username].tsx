@@ -35,8 +35,8 @@ const User = ({
   }
 
   return (
-    <div className="dark:bg-background min-h-screen min-w-screen flex flex-row md:justify-center md:items-center py-10">
-      <div className="container mx-auto md:w-[1200px] flex flex-col md:flex-row md:justify-center md:bg-zinc-50/10 px-4 md:p-10 md:border dark:border-none rounded-lg">
+    <div className="dark:bg-background min-h-screen min-w-screen flex flex-col md:justify-center md:items-center py-10">
+      <div className="container mx-auto md:w-[1200px] flex flex-col md:flex-row md:justify-center  px-4 md:p-10 md:border dark:border-none rounded-lg">
         <div className="lg:w-[20%] md:w-[30%]  flex flex-row md:flex-col w-full mb-3 items-center md:items-start ">
           {user.image && (
             <Image
@@ -56,10 +56,10 @@ const User = ({
             </p>
             <ul className="flex flex-row md:flex-col justify-start gap-x-1">
               {user.channels?.githubId && (
-                <li className="md:pl-0 md:px-4 px-2 py-1 text-sm dark:bg-zinc-800 md:dark:bg-inherit rounded-lg bg-zinc-100  m-0.5 md:w-36 text-zinc-200">
+                <li className="hover:bg-zinc-100  md:pl-0 md:px-4 px-2 py-1 text-sm dark:bg-zinc-800 md:dark:bg-inherit rounded-lg bg-zinc-100  m-0.5 md:w-36 text-zinc-600 dark:text-zinc-200 md:bg-inherit">
                   <Link
                     href={"https://github.com/" + user.channels.githubId}
-                    className="flex flex-row items-center text-xs text-zinc-200 space-x-2"
+                    className="flex flex-row items-center text-xs  space-x-2"
                   >
                     <Image
                       src={"/github1.svg"}
@@ -79,12 +79,12 @@ const User = ({
                   return (
                     <li
                       key={social.id}
-                      className="  md:pl-0 md:px-4 px-2 py-1 text-sm dark:bg-zinc-800 md:dark:bg-inherit rounded-lg bg-zinc-100  m-0.5 md:w-36 text-zinc-200"
+                      className="hover:bg-zinc-100 md:pl-0 md:px-4 px-2 py-1 text-sm dark:bg-zinc-800 md:dark:bg-inherit rounded-lg bg-zinc-100 md:bg-inherit  m-0.5 md:w-36 text-zinc-600 dark:text-zinc-200"
                     >
                       <Link
                         href={social.url}
                         target="_blank"
-                        className="flex flex-row items-center w-full text-xs text-zinc-200 space-x-2"
+                        className="flex flex-row items-center w-full text-xs  space-x-2"
                       >
                         <Image
                           src={`/${name?.toLowerCase()}.svg`}
@@ -104,10 +104,10 @@ const User = ({
                 })}
 
               {user.channels?.twitchId && (
-                <li className="  md:pl-0 md:px-4 px-2 py-1 text-sm dark:bg-zinc-800 md:dark:bg-inherit rounded-lg bg-zinc-100  m-0.5 md:w-36 text-zinc-200">
+                <li className="  md:pl-0 md:px-4 px-2 py-1 text-sm md:dark:bg-inherit rounded-lg hover:bg-zinc-100  m-0.5 md:w-36 text-zinc-600 dark:text-zinc-200">
                   <Link
                     href="/"
-                    className="flex flex-row items-center w-full text-xs text-zinc-200 space-x-2"
+                    className="flex flex-row items-center w-full text-xs  space-x-2"
                   >
                     <Image
                       src={"/twitch.svg"}
@@ -120,14 +120,14 @@ const User = ({
                 </li>
               )}
               {user.channels?.youtubeId && (
-                <li className="  md:pl-0 md:px-4 px-2 py-1 text-sm dark:bg-zinc-800 md:dark:bg-inherit rounded-lg bg-zinc-100  m-0.5 md:w-36 text-zinc-200">
+                <li className="md:pl-0 md:px-4 px-2 py-1 text-sm dark:bg-zinc-800 md:dark:bg-inherit rounded-lg bg-zinc-100  m-0.5 md:w-36 text-zinc-600 dark:text-zinc-200 md:bg-inherit">
                   <Link
                     href={
                       "https://www.youtube.com/watch?ab_channel=" +
                       user.channels.youtubeId
                     }
                     target="_blank"
-                    className="flex flex-row items-center w-full text-xs text-zinc-200 space-x-2"
+                    className="flex flex-row items-center w-full text-xs space-x-2"
                   >
                     <Image
                       src={"/youtube.svg"}
@@ -158,6 +158,17 @@ const User = ({
           {user.channels?.youtubeId && (
             <YouTubeContent channelId={user.channels?.youtubeId} />
           )}
+        </div>
+      </div>
+
+      <div className="flex  justify-center text-center my-4 mt-24 flex-col">
+        <p className="text-sm text-zinc-800">
+          Create your <span className="font-serif font-bold ">WhatIBuilt </span>
+          profile
+        </p>
+        <div className="text-xs gap-x-3 flex justify-center">
+          <Link href="/auth/login">Login</Link>
+          <Link href="/auth/register">Register</Link>
         </div>
       </div>
     </div>

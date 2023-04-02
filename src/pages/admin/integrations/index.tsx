@@ -1,14 +1,13 @@
 import GitHubContent from "@/components/GitHubContent";
-import TwitchContent from "@/components/TwitchContent";
 import YouTubeContent from "@/components/YouTubeContent";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
-import { githubUri } from "@/utils/axios";
 import { Channels } from "@prisma/client";
 import { GetServerSidePropsContext } from "next";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 import React from "react";
 import prisma from "../../../utils/prisma";
+
 const Integrations = ({ channels }: { channels: Channels }) => {
   return (
     <div className="md:w-[70%] w-full space-y-3 ">
@@ -21,26 +20,28 @@ const Integrations = ({ channels }: { channels: Channels }) => {
       </p>
 
       <div className="flex flex-col md:flex-row gap-2">
-        <Link
-          href="/api/twitch"
-          className="text-center px-3 py-2 capitalize text-sm  bg-purple-800 text-gray-100 rounded-lg"
-        >
-          Connect Your Twitch
-        </Link>
+        {!channels?.twitchId && (
+          <Link
+            href="/api/twitch"
+            className="text-center px-3 py-2 capitalize text-sm  bg-[#9146FF] text-zinc-100 rounded-lg"
+          >
+            Connect Your Twitch
+          </Link>
+        )}
         {!channels?.youtubeId && (
           <Link
             href="/api/youtube"
-            className="px-3 py-2 capitalize text-sm  bg-red-700 text-gray-100 text-center"
+            className="px-3 py-2 capitalize text-sm  bg-[#FF0000] text-zinc-100 text-center  rounded-lg"
           >
-            Connect Your YouTube channel
+            Connect Your YouTube
           </Link>
         )}
         {!channels?.githubId && (
           <Link
             href={"/api/github"}
-            className="text-center px-3 py-2 capitalize text-sm  bg-zinc-600 text-gray-100 "
+            className="text-center px-3 py-2 capitalize text-sm  bg-zinc-600 text-zinc-100 rounded-lg"
           >
-            Connect Your GitHub account
+            Connect Your GitHub
           </Link>
         )}
       </div>

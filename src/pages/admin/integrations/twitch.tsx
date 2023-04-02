@@ -1,8 +1,9 @@
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
-import { twitchTokenClient } from "@/utils/axios";
+import { twitchClient, twitchTokenClient } from "@/utils/axios";
 import { GetServerSidePropsContext } from "next";
 import { getServerSession } from "next-auth";
 import React from "react";
+import prisma from "@/utils/prisma";
 
 const Twitch = () => {
   return (
@@ -45,20 +46,45 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       };
     }
 
-    if (code) {
-      const uri =
-        process.env.NODE_ENV === "development"
-          ? "http://localhost:3000/admin/integrations/youtube"
-          : process.env.TWITCH_REDIRECT_URI;
-      const { data } = await twitchTokenClient().post("", {
-        code: code,
-        grant_type: "authorization_code",
-        redirect_uri: uri,
-        client_id: process.env.TWITCH_CLIENT_ID,
-        client_secret: process.env.TWITCH_CLIENT_SECRET,
-      });
+    const uri =
+      process.env.NODE_ENV === "development"
+        ? "http://localhost:3000/admin/integrations/twitch"
+        : process.env.TWITCH_REDIRECT_URI;
+    const { data } = await twitchTokenClient().post("", {
+      code: code,
+      grant_type: "authorization_code",
+      redirect_uri: uri,
+      client_id: process.env.TWITCH_CLIENT_ID,
+      client_secret: process.env.TWITCH_CLIENT_SECRET,
+    });
 
-      const { access_token } = data;
+    const { access_token } = data;
+
+    const { data: twitch } = await twitchClient().get("/users", {
+      headers: {
+        Authorization: "Bearer " + access_token,
+        "Client-Id": process.env.TWITCH_CLIENT_ID,
+      },
+    });
+
+    const twitchId = twitch.data[0]?.id;
+
+    const channel = await prisma.channels.upsert({
+      where: {
+        userID: session?.user?.id,
+      },
+      update: {
+        twitchId: twitchId,
+      },
+      create: {
+        twitchId: twitchId,
+        userID: session.user?.id!,
+      },
+    });
+    if (channel) {
+      return {
+        redirect: { destination: "/admin/integrations", permanent: false },
+      };
     }
 
     return {
