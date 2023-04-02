@@ -104,7 +104,7 @@ const User = ({
                 })}
 
               {user.channels?.twitchId && (
-                <li className="  md:pl-0 md:px-4 px-2 py-1 text-sm md:dark:bg-inherit rounded-lg hover:bg-zinc-100  m-0.5 md:w-36 text-zinc-600 dark:text-zinc-200">
+                <li className="hover:bg-zinc-100 md:pl-0 md:px-4 px-2 py-1 text-sm dark:bg-zinc-800 md:dark:bg-inherit rounded-lg bg-zinc-100 md:bg-inherit  m-0.5 md:w-36 text-zinc-600 dark:text-zinc-200">
                   <Link
                     href="/"
                     className="flex flex-row items-center w-full text-xs  space-x-2"
