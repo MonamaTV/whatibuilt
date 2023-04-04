@@ -1,23 +1,25 @@
 import { signOut } from "next-auth/react";
-import Link from "next/link";
 import { useTheme } from "next-themes";
 type NavTypes = {
   handleModal: () => void;
+  state: boolean;
+  handlePublish: () => void;
 };
-const Nav = ({ handleModal }: NavTypes) => {
+const Nav = ({ handleModal, state, handlePublish }: NavTypes) => {
   const { theme, setTheme } = useTheme();
+
   return (
     <nav className="flex flex-row justify-around py-6 dark:bg-background dark:text-gray-100">
       <p className="md:text-xl text-normal font-bold font-serif">WhatIBuilt</p>
       <br />
       <ul className="flex flex-row items-center gap-x-4 text-base dark:text-gray-100 text-gray-800">
         <li>
-          <Link
-            href={"/admin/links"}
+          <button
+            onClick={handlePublish}
             className="flex flex-row items-center gap-x-2  px-1 md:py-1 dark:text-white text-zinc-800 hover:bg-primary hover:text-gray-100 md:w-24 justify-center transition-colors duration-300 ease-in-out text-xs rounded-lg"
           >
-            <span>Publish</span>
-          </Link>
+            {state ? <span>Unpublish</span> : <span>Publish</span>}
+          </button>
         </li>
         <li className="relative">
           <span className="peer flex flex-row items-center gap-x-2 text-xs">

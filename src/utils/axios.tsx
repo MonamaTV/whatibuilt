@@ -7,7 +7,6 @@ export const axiosClient = (): AxiosInstance => {
     // timeout: 3000,
   });
 };
-
 //YouTube clients
 export const youtubeClient = () => {
   return axios.create({
@@ -93,5 +92,3 @@ export const githubClient = () => {
     baseURL: "https://api.github.com",
   });
 };
-
-export const githubUri = githubAuthClient().getUri();

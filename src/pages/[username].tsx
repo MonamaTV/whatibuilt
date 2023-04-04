@@ -92,12 +92,7 @@ const User = ({
                           width={20}
                           alt="LinkedIn"
                         />
-                        <span className="hidden md:block">
-                          {
-                            socials.find((soc) => soc.value === social.name)
-                              ?.name
-                          }
-                        </span>
+                        <span className="hidden md:block">{name}</span>
                       </Link>
                     </li>
                   );
@@ -178,9 +173,12 @@ const User = ({
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   try {
     const username = context.query?.username as string;
-    const user = await prisma.user.findUnique({
+    const user = await prisma.user.findMany({
       where: {
-        username: username,
+        AND: {
+          username: username,
+          published: true,
+        },
       },
       include: {
         channels: true,
@@ -189,12 +187,12 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     });
 
     if (!user) return { props: { user: null } };
+    const firstUser = user[0];
 
     return {
-      props: { user: { ...user, publishedAt: null } },
+      props: { user: { ...firstUser, publishedAt: null } },
     };
   } catch (error) {
-    console.log(error);
     return {
       props: { user: null },
     };

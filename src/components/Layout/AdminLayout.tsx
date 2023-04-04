@@ -62,9 +62,15 @@ const AdminLayout = ({ children }: PropsWithChildren) => {
     }
   };
 
+  const handlePublishUser = () => {};
+
   return session.data?.user !== null ? (
     <>
-      <Nav handleModal={toggleModal} />
+      <Nav
+        handleModal={toggleModal}
+        state={true}
+        handlePublish={handlePublishUser}
+      />
       {modal && (
         <Uploader
           handleUpload={handleFileUpload}
