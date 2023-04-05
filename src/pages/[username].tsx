@@ -177,7 +177,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       where: {
         AND: {
           username: username,
-          published: true,
+          published: false,
         },
       },
       include: {
