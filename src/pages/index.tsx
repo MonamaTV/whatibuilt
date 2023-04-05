@@ -21,9 +21,10 @@ export default function Home() {
         </ul>
       </nav>
 
-      <section className="w-screen mt-48 flex flex-col justify-center items-center text-zinc-900 gap-y-3 text-center">
-        <h1 className="md:text-8xl sm:text-6xl text-5xl font-bold my-1 text-center">
-          Build it. <span className="text-primary">Publish</span>. Simple.
+      <section className="w-screen md:mt-48 mt-32 flex flex-col justify-center items-center text-zinc-900 gap-y-3 text-center">
+        <h1 className="md:text-8xl sm:text-6xl text-7xl font-bold my-1 text-center flex flex-col">
+          <span>Build it.</span> <span className="text-primary">Publish.</span>
+          <span>Simple.</span>
         </h1>
         <p className="text-center">
           You can create a dev porfolio with so much ease. Put all your content
