@@ -25,7 +25,7 @@ const Nav = ({ handleModal, state, handlePublish }: NavTypes) => {
           <span className="peer flex flex-row items-center gap-x-2 text-xs">
             Settings
           </span>
-          <div className="hover:flex peer-hover:flex hidden absolute w-36 px-1 bg-zinc-900 dark:bg-zinc-50/10  flex-col justify-start py-4 gap-y-1 right-0 shadow rounded-lg">
+          <div className="hover:flex peer-hover:flex hidden absolute w-36 px-1 bg-zinc-900 dark:bg-zinc-500  flex-col justify-start py-4 gap-y-1 right-0 shadow rounded-lg z-20">
             <button
               onClick={handleModal}
               className="text-xs text-start px-2 py-1 w-full text-white dark:text-zinc-200 rounded-md hover:bg-primary "

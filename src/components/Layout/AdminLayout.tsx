@@ -12,6 +12,7 @@ import Nav from "../Nav";
 import ProfleImage from "../ProfilePicture";
 import { ToastError, ToastSuccess } from "../Toasts/Toasts";
 import Uploader from "../Uploader";
+import Modal from "../Modal";
 
 const AdminLayout = ({ children }: PropsWithChildren) => {
   const [file, setFile] = useState<File | undefined>();
@@ -72,12 +73,13 @@ const AdminLayout = ({ children }: PropsWithChildren) => {
         handlePublish={handlePublishUser}
       />
       {modal && (
-        <Uploader
-          handleUpload={handleFileUpload}
-          file={file}
-          handleFile={setFile}
-          closeModal={toggleModal}
-        />
+        <Modal closeModal={toggleModal}>
+          <Uploader
+            handleUpload={handleFileUpload}
+            file={file}
+            handleFile={setFile}
+          />
+        </Modal>
       )}
       <div className="dark:bg-background min-h-screen min-w-screen flex flex-row pb-10">
         <div className="container mx-auto md:w-[1200px] flex flex-col md:flex-row md:justify-center  px-3.5 md:p-10  md:border dark:border-none min-h-full shadow-md rounded-lg">

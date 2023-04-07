@@ -5,15 +5,27 @@ import { Channels } from "@prisma/client";
 import { GetServerSidePropsContext } from "next";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import prisma from "../../../utils/prisma";
+import Modal from "@/components/Modal";
+import Platforms from "@/components/Socials";
 
 const Integrations = ({ channels }: { channels: Channels }) => {
+  const [modal, setModal] = useState(false);
+  const toggleModal = () => {
+    setModal(!modal);
+  };
   return (
-    <div className="md:w-[70%] w-full space-y-3 ">
-      <h3 className="text-2xl text-zinc-800 dark:text-zinc-100 font-serif my-2">
+    <div className="md:w-[70%] w-full gap-y-3 relative">
+      <h3 className="text-2xl text-zinc-800 dark:text-zinc-100 font-serif my-2 flex flex-row justify-between">
         Integrations
       </h3>
+      <button
+        onClick={toggleModal}
+        className="text-xs text-zinc-200 bg-primary border-none outline-none rounded-lg px-2 py-1 font-sans absolute right-0 top-3"
+      >
+        More
+      </button>
       <p className="dark:text-gray-100 text-zinc-700 text-sm">
         Now you can only integrate your YouTube channel, Twitch and GitHub
         accounts
@@ -48,6 +60,12 @@ const Integrations = ({ channels }: { channels: Channels }) => {
       {channels?.githubId && <GitHubContent githubId={channels?.githubId} />}
       {channels?.youtubeId && (
         <YouTubeContent channelId={channels?.youtubeId} />
+      )}
+
+      {modal && (
+        <Modal closeModal={toggleModal}>
+          <Platforms />
+        </Modal>
       )}
     </div>
   );

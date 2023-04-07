@@ -4,17 +4,11 @@ import React, { useEffect, useState } from "react";
 type UploadTypes = {
   file: File | undefined;
   handleFile: (file: File | undefined) => void;
-  closeModal: () => void;
   sizeLimit?: number;
   handleUpload: (e: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
-const Uploader = ({
-  file,
-  handleFile,
-  closeModal,
-  handleUpload,
-}: UploadTypes) => {
+const Uploader = ({ file, handleFile, handleUpload }: UploadTypes) => {
   const [fileUrl, setFileUrl] = useState<string>();
 
   useEffect(() => {
@@ -55,29 +49,32 @@ const Uploader = ({
     handleFile(file);
   };
   return (
-    <div className="fixed top-0 left-0 w-screen min-h-screen bg-zinc-500/75 z-10 flex flex-col items-center justify-center transition-all px-3.5 shadow-lg shadow-white ">
-      <button
-        onClick={closeModal}
-        className="border border-red-500 px-3 py-1 relative text-red-500 top-10 md:left-[408px] left-[138px] hover:bg-red-500 hover:text-white transition-colors ease-in-out duration-200 rounded-md text-sm"
-      >
-        Close
-      </button>
+    <>
       <label
         onDragOver={handleDragStart}
         onDragLeave={handleDragEnd}
         onDrop={handleDrop}
         htmlFor="upload"
         id="dropzone"
-        className="border-dashed w-full md:w-[900px] h-[600px] bg-background flex flex-col justify-center items-center space-y-3 cursor-pointer hover:cursor-copy border-primary rounded-lg"
+        className="border-dashed w-full md:w-[900px] h-[600px] dark:bg-background bg-zinc-200 flex flex-col justify-center items-center space-y-3 cursor-pointer hover:cursor-copy border-primary rounded-lg"
       >
         {!file ? (
           <>
-            <h4 className="text-3xl font-bold text-white">UPLOAD</h4>
+            <h4 className="text-3xl font-bold dark:text-white text-zinc-900">
+              UPLOAD
+            </h4>
             <p className="text-sm text-zinc-400">
-              Click or <span className="text-zinc-200">drag and drop</span>
+              Click or{" "}
+              <span className="dark:text-zinc-200 text-zinc-800">
+                drag and drop
+              </span>
             </p>
-            <p className="text-sm text-zinc-400">SVG. PNG. JPG.</p>
-            <p className="text-sm text-zinc-400">Less than 4MB</p>
+            <p className="text-sm dark:text-zinc-400 text-zinc-400">
+              SVG. PNG. JPG.
+            </p>
+            <p className="text-sm dark:text-zinc-400 text-zinc-400">
+              Less than 4MB
+            </p>
           </>
         ) : (
           <>
@@ -104,7 +101,7 @@ const Uploader = ({
         id="upload"
         onChange={handlePickFile}
       />
-    </div>
+    </>
   );
 };
 
