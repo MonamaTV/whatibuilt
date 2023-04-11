@@ -1,13 +1,19 @@
-import { useScroll } from "@/hooks/useScroll";
 import Image from "next/image";
 import axios from "axios";
-import { useEffect, useState } from "react";
 import { Root } from "@/utils/types";
 import YouTubeLoader from "./Loaders/YouTubeLoader";
 import YouTubeImage from "./Image/Image";
 import Link from "next/link";
-const YouTubeContent = ({ channelId }: { channelId: string | null }) => {
-  const [content, setContent] = useState<Root[]>([]);
+import { useQuery } from "@tanstack/react-query";
+const YouTubeContent = ({
+  channelId,
+  isAdmin,
+  handleDisconnectChannel,
+}: {
+  handleDisconnectChannel?: () => void;
+  channelId: string;
+  isAdmin: boolean;
+}) => {
   const fetchChannelUploadId = async () => {
     const { data } = await axios.get(
       "https://youtube.googleapis.com/youtube/v3/channels?part=contentDetails",
@@ -23,7 +29,7 @@ const YouTubeContent = ({ channelId }: { channelId: string | null }) => {
     return data.items[0].contentDetails.relatedPlaylists.uploads;
   };
 
-  const fetchChannelContent = async () => {
+  const fetchChannelContent = async (): Promise<Root[]> => {
     try {
       const uploadID = await fetchChannelUploadId();
       const { data } = await axios.get(
@@ -36,24 +42,33 @@ const YouTubeContent = ({ channelId }: { channelId: string | null }) => {
           },
         }
       );
-
       const items: Root[] = data.items;
-      setContent(items);
+      return items;
     } catch (error) {
-      console.log(error);
+      return [];
     }
   };
 
-  useEffect(() => {
-    fetchChannelContent();
-  }, []);
+  const { data: content } = useQuery({
+    queryKey: ["videos"],
+    queryFn: fetchChannelContent,
+  });
 
-  //   const scroll = useScroll();
-  return content.length > 0 ? (
+  return content && content.length > 0 ? (
     <div className="w-full">
-      <h3 className="text-xl text-zinc-700 dark:text-zinc-100 font-serif my-2">
-        YouTube
-      </h3>
+      <div className="flex flex-row items-center gap-x-2">
+        <h3 className="text-xl text-zinc-700 dark:text-zinc-100 font-serif my-2">
+          YouTube
+        </h3>
+        {isAdmin && (
+          <button
+            onClick={handleDisconnectChannel}
+            className="hover:bg-red-600 hover:text-zinc-200 text-xs text-red-600 border border-red-500 h-5 px-3 rounded-lg"
+          >
+            Disconnect
+          </button>
+        )}
+      </div>
       <div
         // ref={scroll}
         className="flex flex-row overflow-x-auto  gap-x-3 w-full"

@@ -1,5 +1,6 @@
 import { signOut } from "next-auth/react";
 import { useTheme } from "next-themes";
+import Link from "next/link";
 type NavTypes = {
   handleModal: () => void;
   state: boolean;
@@ -10,7 +11,9 @@ const Nav = ({ handleModal, state, handlePublish }: NavTypes) => {
 
   return (
     <nav className="flex flex-row justify-around py-6 dark:bg-background dark:text-gray-100">
-      <p className="md:text-xl text-normal font-bold font-serif">WhatIBuilt</p>
+      <Link href="/" className="md:text-xl text-normal font-bold font-serif">
+        WhatIBuilt
+      </Link>
       <br />
       <ul className="flex flex-row items-center gap-x-4 text-base dark:text-gray-100 text-gray-800">
         <li>

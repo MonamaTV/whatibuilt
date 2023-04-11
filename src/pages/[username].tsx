@@ -6,11 +6,19 @@ import YouTubeContent from "@/components/YouTubeContent";
 import GitHubContent from "@/components/GitHubContent";
 import { socials } from "@/utils/types";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 const User = ({
   user,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const router = useRouter();
+
+  const [username, setUsername] = useState(router.query.username ?? "");
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setUsername(value);
+  };
 
   if (user === null) {
     return (
@@ -24,7 +32,8 @@ const User = ({
         </p>
         <input
           type={"text"}
-          value={router.query.username}
+          onChange={handleChange}
+          value={username}
           className="px-3 py-2 rounded-lg border w-80 md:w-96 dark:bg-zinc-600 border-zinc-200 dark:border-zinc-800 text-zinc-800 outline-none"
         />
         <button className="bg-primary w-80 md:w-96 text-center px-3 py-2 rounded-lg text-white ">
@@ -48,7 +57,7 @@ const User = ({
             />
           )}
           <div className="px-3">
-            <h3 className="font-bold text-xl font-serif md:hidden text-zinc-700 dark:text-zinc-100">
+            <h3 className="font-normal text-xl font-serif md:hidden text-zinc-700 dark:text-zinc-100">
               {user.name}
             </h3>
             <p className="md:my-2 font-serif dark:text-zinc-100 text-zinc-700">
@@ -148,10 +157,13 @@ const User = ({
           </div>
 
           {user.channels?.githubId && (
-            <GitHubContent githubId={user.channels?.githubId} />
+            <GitHubContent githubId={user.channels?.githubId} isAdmin={false} />
           )}
           {user.channels?.youtubeId && (
-            <YouTubeContent channelId={user.channels?.youtubeId} />
+            <YouTubeContent
+              channelId={user.channels?.youtubeId}
+              isAdmin={false}
+            />
           )}
         </div>
       </div>

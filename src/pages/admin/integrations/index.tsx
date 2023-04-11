@@ -9,12 +9,32 @@ import React, { useState } from "react";
 import prisma from "../../../utils/prisma";
 import Modal from "@/components/Modal";
 import Platforms from "@/components/Socials";
+import { useMutation } from "@tanstack/react-query";
+import { updateChannels } from "@/services/channels";
+import { ToastError, ToastSuccess } from "@/components/Toasts/Toasts";
 
 const Integrations = ({ channels }: { channels: Channels }) => {
   const [modal, setModal] = useState(false);
   const toggleModal = () => {
     setModal(!modal);
   };
+
+  const mutation = useMutation({
+    mutationFn: (channel: any) => {
+      return updateChannels(channel);
+    },
+    onSuccess: () => {
+      ToastSuccess("Removed channel successfully");
+    },
+    onError: () => {
+      ToastError("Couldn't remove channel");
+    },
+  });
+
+  const disconnectChannel = (channel: any) => {
+    mutation.mutate(channel);
+  };
+
   return (
     <div className="md:w-[70%] w-full gap-y-3 relative">
       <h3 className="text-2xl text-zinc-800 dark:text-zinc-100 font-serif my-2 flex flex-row justify-between">
@@ -31,7 +51,7 @@ const Integrations = ({ channels }: { channels: Channels }) => {
         accounts
       </p>
 
-      <div className="flex flex-col md:flex-row gap-2">
+      <div className="flex flex-col md:flex-row gap-2 my-3">
         {!channels?.twitchId && (
           <Link
             href="/api/twitch"
@@ -57,9 +77,19 @@ const Integrations = ({ channels }: { channels: Channels }) => {
           </Link>
         )}
       </div>
-      {channels?.githubId && <GitHubContent githubId={channels?.githubId} />}
+      {channels?.githubId && (
+        <GitHubContent
+          githubId={channels?.githubId}
+          isAdmin={true}
+          handleDisconnectChannel={() => disconnectChannel({ githubId: null })}
+        />
+      )}
       {channels?.youtubeId && (
-        <YouTubeContent channelId={channels?.youtubeId} />
+        <YouTubeContent
+          handleDisconnectChannel={() => disconnectChannel({ youtubeId: null })}
+          channelId={channels?.youtubeId}
+          isAdmin={true}
+        />
       )}
 
       {modal && (

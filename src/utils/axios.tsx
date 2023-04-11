@@ -74,10 +74,14 @@ export const twitchTokenClient = () => {
 
 // GitHub axio clients
 export const githubAuthClient = () => {
+  const uri =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:3000/admin/integrations/github"
+      : process.env.GITHUB_REDIRECTURI;
   return axios.create({
     baseURL: process.env.GITHUB_OAUTH + "/authorize",
     params: {
-      redirect_uri: process.env.GITHUB_REDIRECTURI,
+      redirect_uri: uri,
       client_id: process.env.GITHUB_CLIENT_ID,
     },
   });

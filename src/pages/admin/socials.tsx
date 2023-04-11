@@ -92,7 +92,8 @@ const Socials = ({ socialAccounts }: { socialAccounts: Social[] }) => {
         Socials
       </h3>
       <p className="dark:text-zinc-100 text-zinc-700 text-sm">
-        Share your social accounts for folks to connect with you
+        Share your social accounts for folks to connect with you. Copy and paste
+        the links below.
       </p>
       <select
         onChange={handleSelectInput}

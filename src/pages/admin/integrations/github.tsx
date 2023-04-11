@@ -50,9 +50,15 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         redirect: { destination: "/admin/integrations", permanent: false },
       };
     }
+
+    const uri =
+      process.env.NODE_ENV === "development"
+        ? "http://localhost:3000/admin/integrations/github"
+        : process.env.GITHUB_REDIRECTURI;
+
     const { data } = await githubTokenClient().post("", {
       code: code,
-      redirect_uri: process.env.GITHUB_REDIRECTURI,
+      redirect_uri: uri,
       client_id: process.env.GITHUB_CLIENT_ID,
       client_secret: process.env.GITHUB_CLIENT_SECRET,
     });
