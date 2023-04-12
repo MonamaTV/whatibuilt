@@ -35,7 +35,7 @@ const Home = () => {
         </p>
         <Link
           href="/auth/login"
-          className="from-background via-background to-primary text-zinc-200 px-10 py-2 rounded-lg shadow bg-gradient-to-br hover:from-primary hover:via-background hover:to-background transition-all duration-700 w-56 dark:from-primary dark:via-primary dark:to-background"
+          className="bg-gradient-to-br from-background via-background to-primary text-zinc-200 px-10 py-2 rounded-lg shadow  hover:from-primary hover:via-background hover:to-background transition-all duration-700 w-56 dark:from-primary dark:via-primary dark:to-background"
         >
           Create porfolio
         </Link>

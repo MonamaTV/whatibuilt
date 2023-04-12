@@ -19,8 +19,9 @@ const User = ({
     const value = e.target.value;
     setUsername(value);
   };
+  console.log(user);
 
-  if (user === null) {
+  if (!user) {
     return (
       <div className="dark:bg-background min-h-screen min-w-screen flex flex-col justify-center items-center py-10 gap-y-2">
         <h1 className="text-5xl font-bold font-serif dark:text-zinc-100">
@@ -189,7 +190,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       where: {
         AND: {
           username: username,
-          published: false,
+          published: true,
         },
       },
       include: {
@@ -197,8 +198,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         socials: true,
       },
     });
-
-    if (!user) return { props: { user: null } };
+    if (user.length < 1) return { props: { user: null } };
     const firstUser = user[0];
 
     return {

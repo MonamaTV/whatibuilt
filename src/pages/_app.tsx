@@ -30,8 +30,10 @@ export default function App({
   }
 
   return (
-    <ThemeProvider enableSystem={true} attribute="class">
-      <Component {...pageProps} />
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider enableSystem={true} attribute="class">
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 }

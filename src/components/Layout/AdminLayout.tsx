@@ -63,13 +63,29 @@ const AdminLayout = ({ children }: PropsWithChildren) => {
     }
   };
 
-  const handlePublishUser = () => {};
+  const updateMutation = useMutation({
+    mutationFn: (state: boolean) => {
+      return updateUser({ published: state });
+    },
+    onSuccess: () => {
+      ToastSuccess("Successfully published your profile");
+    },
+    onError: () => {
+      ToastError("Failed to publish your profile");
+    },
+  });
+
+  const handlePublishUser = () => {
+    if (session?.data === null) return;
+
+    updateMutation.mutate(!session?.data.user?.published);
+  };
 
   return session.data?.user !== null ? (
     <>
       <Nav
         handleModal={toggleModal}
-        state={true}
+        state={session.data?.user?.published}
         handlePublish={handlePublishUser}
       />
       {modal && (
@@ -82,7 +98,7 @@ const AdminLayout = ({ children }: PropsWithChildren) => {
         </Modal>
       )}
       <div className="dark:bg-background min-h-screen min-w-screen flex flex-row pb-10">
-        <div className="container mx-auto md:w-[1200px] flex flex-col md:flex-row md:justify-center  px-3.5 md:p-10  md:border dark:border-none min-h-full shadow-md rounded-lg">
+        <div className="container mx-auto md:w-[1200px] flex flex-col md:flex-row md:justify-center  px-3.5 md:p-10  md:border dark:border-zinc-700 min-h-full shadow-md rounded-lg">
           <div className="md:w-[20%] w-full mt-3 ">
             <div className="relative">
               {session.data?.user?.image ? (

@@ -42,7 +42,7 @@ const YouTubeContent = ({
           },
         }
       );
-      const items: Root[] = data.items;
+      const items = data.items;
       return items;
     } catch (error) {
       return [];
@@ -69,10 +69,7 @@ const YouTubeContent = ({
           </button>
         )}
       </div>
-      <div
-        // ref={scroll}
-        className="flex flex-row overflow-x-auto  gap-x-3 w-full"
-      >
+      <div className="flex flex-row overflow-x-auto  gap-x-3 w-full">
         {content.map((video) => {
           const { snippet } = video;
 

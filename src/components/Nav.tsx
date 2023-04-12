@@ -3,7 +3,7 @@ import { useTheme } from "next-themes";
 import Link from "next/link";
 type NavTypes = {
   handleModal: () => void;
-  state: boolean;
+  state: boolean | undefined;
   handlePublish: () => void;
 };
 const Nav = ({ handleModal, state, handlePublish }: NavTypes) => {
