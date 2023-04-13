@@ -23,7 +23,7 @@ const Home = () => {
           <li className="md:px-10 px-2 py-2 hover:bg-primary hover:text-zinc-200 rounded-lg text-sm">
             <Link
               href={
-                session.status === "authenticated" ? "/admim" : "/auth/login"
+                session.status === "authenticated" ? "/admin" : "/auth/login"
               }
             >
               {session.status === "authenticated" ? "Dashboard" : "Login"}
@@ -34,7 +34,7 @@ const Home = () => {
 
       <section className="w-screen md:mt-52 mt-32 flex  flex-col justify-center items-center dark:text-zinc-200 text-zinc-900 gap-y-3 text-center">
         <h1 className="md:text-8xl sm:text-6xl text-7xl font-extrabold my-1 text-center flex flex-col md:flex-row ">
-          <span>Create. </span> <span className="text-primary"> Publish.</span>{" "}
+          <span>Create. </span> <span className="text-primary"> Publish.</span>
           <span>Simple.</span>
         </h1>
         <p className="text-center px-10">
@@ -42,7 +42,7 @@ const Home = () => {
           from different platforms in one place
         </p>
         <Link
-          href={session.status === "authenticated" ? "/admim" : "/auth/login"}
+          href={session.status === "authenticated" ? "/admin" : "/auth/login"}
           className="bg-gradient-to-br from-background via-background to-primary text-zinc-200 px-10 py-2 rounded-lg shadow  hover:from-primary hover:via-background hover:to-background transition-all duration-700 w-56 dark:from-primary dark:via-primary dark:to-background"
         >
           {session.status === "authenticated"
