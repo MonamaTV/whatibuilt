@@ -36,6 +36,8 @@ const AdminLayout = ({ children }: PropsWithChildren) => {
     },
   });
 
+  const [publishState, setPublishLoading] = useState(false);
+
   const handleFileUpload = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.currentTarget.disabled = true;
     e.currentTarget.textContent = "Uploading...";
@@ -73,18 +75,23 @@ const AdminLayout = ({ children }: PropsWithChildren) => {
     onError: () => {
       ToastError("Failed to publish your profile");
     },
+    onSettled: () => {
+      setPublishLoading(false);
+    },
   });
 
   const handlePublishUser = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (session?.data === null) return;
-    e.currentTarget.disabled = true;
+    setPublishLoading(true);
     updateMutation.mutate(!session?.data.user?.published);
-    e.currentTarget.disabled = false;
   };
+
+  const [loading, setLoading] = useState(true);
 
   return session.data?.user !== null ? (
     <>
       <Nav
+        publishing={publishState}
         handleModal={toggleModal}
         state={session.data?.user?.published}
         handlePublish={handlePublishUser}
@@ -106,7 +113,7 @@ const AdminLayout = ({ children }: PropsWithChildren) => {
                 <ProfleImage source={session.data?.user?.image} />
               ) : (
                 <div
-                  className={`hidden md:block bg-zinc-800 w-[140px] h-[140px] animate-pulse rounded-lg`}
+                  className={`hidden md:block bg-zinc-800 w-[140px] h-[140px]  rounded-lg`}
                 ></div>
               )}
               <button
@@ -130,7 +137,10 @@ const AdminLayout = ({ children }: PropsWithChildren) => {
                     height={30}
                     onClick={toggleModal}
                     alt="Profile"
-                    className="rounded-md object-cover md:hidden"
+                    onLoadingComplete={() => setLoading(false)}
+                    className={`rounded-md object-cover md:hidden ${
+                      loading ? "grayscale blur-2xl scale-110" : ""
+                    }`}
                   />
                 ) : null}
               </li>

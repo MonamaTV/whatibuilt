@@ -6,7 +6,7 @@ export const ToastSuccess = (message: string) =>
       <div
         className={`${
           t.visible ? "animate-enter" : "animate-leave"
-        } max-w-md w-full bg-white dark:border dark:border-zinc-600 dark:bg-background shadow-lg pointer-events-auto flex rounded-lg `}
+        } max-w-md w-full bg-white  dark:bg-background shadow-lg pointer-events-auto flex rounded-lg `}
       >
         <div className="flex-1 w-0 p-4">
           <div className="flex items-start">
@@ -18,7 +18,7 @@ export const ToastSuccess = (message: string) =>
             </div>
           </div>
         </div>
-        <div className="flex border-l border-gray-200 rounded-r-lg">
+        <div className="flex border-l border-zinc-200 dark:border-zinc-700 rounded-r-lg">
           <button
             onClick={() => toast.dismiss(t.id)}
             className="w-full border border-none p-4 flex items-center justify-center text-sm font-medium text-red-400 outline-none "
@@ -35,7 +35,7 @@ export const ToastError = (message: string) =>
       <div
         className={`${
           t.visible ? "animate-enter" : "animate-leave"
-        } max-w-md w-full bg-white dark:bg-background dark:border dark:border-zinc-600 shadow-lg pointer-events-auto flex rounded-l-lg`}
+        } max-w-md w-full bg-white dark:bg-background s shadow-lg pointer-events-auto flex rounded-l-lg`}
       >
         <div className="flex-1 w-0 p-4">
           <div className="flex items-start">
@@ -47,7 +47,7 @@ export const ToastError = (message: string) =>
             </div>
           </div>
         </div>
-        <div className="flex border-l border-gray-200 rounded-r-lg">
+        <div className="flex border-l border-zinc-200 dark:border-zinc-700 rounded-r-lg">
           <button
             onClick={() => toast.dismiss(t.id)}
             className="w-full border border-none p-4 flex items-center justify-center text-sm font-medium text-red-400 outline-none"

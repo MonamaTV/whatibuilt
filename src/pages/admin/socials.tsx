@@ -8,11 +8,12 @@ import { getServerSession } from "next-auth";
 import Image from "next/image";
 import { useState } from "react";
 import { authOptions } from "../api/auth/[...nextauth]";
+import Modal from "@/components/Modal";
+import AddSocial from "@/components/AddSocial";
 
 const Socials = ({ socialAccounts }: { socialAccounts: Social[] }) => {
   const [addedSocials, setAddedSocials] =
     useState<Partial<Social>[]>(socialAccounts);
-  const [data, _] = useState(socials);
 
   const [url, setUrl] = useState<string>("");
   const [value, setValue] = useState<string>("");
@@ -42,6 +43,7 @@ const Socials = ({ socialAccounts }: { socialAccounts: Social[] }) => {
     },
     onSettled: () => {
       setLoadingButton(false);
+      setToggle(false);
     },
   });
 
@@ -86,27 +88,33 @@ const Socials = ({ socialAccounts }: { socialAccounts: Social[] }) => {
     removeMutation.mutate(socialID);
   };
 
+  const [toggle, setToggle] = useState(false);
+  const toggleModal = () => setToggle(!toggle);
+
   return (
     <div className="relative md:w-[70%] w-full space-y-1">
       <h3 className="text-2xl text-zinc-800 dark:text-zinc-100 font-serif my-2">
         Socials
       </h3>
-      <p className="dark:text-zinc-100 text-zinc-700 text-sm">
-        Share your social accounts for folks to connect with you. Copy and paste
-        the links below.
-      </p>
-      <select
+
+      <button
+        onClick={toggleModal}
+        className=" px-3 py-2 text-sm  bg-primary  md:w-44 w-full text-zinc-100  block rounded-lg"
+      >
+        Link social account
+      </button>
+      {/* <select
         onChange={handleSelectInput}
         className=" dark:bg-zinc-600 text-zinc-900  focus:ring-rose-50/10 focus:dark:bg-zinc-600 block w-full dark:dark:bg-zinc-600  dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-50/10 dark:focus:dark:bg-zinc-600 py-2 px-3 outline-none border border-zinc-300 dark:border-none text-sm rounded-lg"
-      >
-        <option value={"-1"}>Select</option>
+      > */}
+      {/* <option value={"-1"}>Select</option>
         {data.map(({ name, value, id }) => (
           <option key={id} value={value}>
             {name}
           </option>
-        ))}
       </select>
-      <input
+        ))} */}
+      {/* <input
         value={url}
         onChange={handleUrlInput}
         type={"url"}
@@ -115,18 +123,26 @@ const Socials = ({ socialAccounts }: { socialAccounts: Social[] }) => {
         placeholder="Paste here..."
       />
       {error ? <p className="text-red-600 text-xs my-1">{error}</p> : null}
-
       <button
         onClick={handleAddSocial}
         disabled={loadingButton}
         className="disabled:bg-zinc-800 disabled:text-zinc-600 disabled:cursor-not-allowed px-3 py-2 capitalize text-sm  bg-primary  md:w-44 w-full text-zinc-100 absolute right-0 block rounded-lg"
       >
         Add link
-      </button>
+      </button> */}
       <br />
-      <br />
-      <br className="md:hidden" />
-
+      {toggle && (
+        <Modal closeModal={toggleModal}>
+          <AddSocial
+            error={error}
+            handleAddSocial={handleAddSocial}
+            handleSelectInput={handleSelectInput}
+            handleUrlInput={handleUrlInput}
+            loadingButton={loadingButton}
+            url={url}
+          />
+        </Modal>
+      )}
       {addedSocials.length > 0 && (
         <>
           <h4 className="text-xl  text-zinc-800 dark:text-rose-100 font-serif my-2 mt-2">
