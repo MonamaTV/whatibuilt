@@ -64,6 +64,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
     const { access_token } = data;
     const { data: youtubeData } = await youtubeClient().get("", {
+      params: { mine: true },
       headers: {
         Authorization: "Bearer " + access_token,
       },

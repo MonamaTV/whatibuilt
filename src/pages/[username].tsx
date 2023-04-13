@@ -7,6 +7,7 @@ import GitHubContent from "@/components/GitHubContent";
 import { socials } from "@/utils/types";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { youtubeClient } from "@/utils/axios";
 
 const User = ({
   user,
@@ -19,7 +20,6 @@ const User = ({
     const value = e.target.value;
     setUsername(value);
   };
-  console.log(user);
 
   if (!user) {
     return (
@@ -35,7 +35,7 @@ const User = ({
           type={"text"}
           onChange={handleChange}
           value={username}
-          className="px-3 py-2 rounded-lg border w-80 md:w-96 dark:bg-zinc-600 border-zinc-200 dark:border-zinc-800 text-zinc-800 outline-none"
+          className="px-3 py-2 rounded-lg border w-80 md:w-96 dark:bg-zinc-600 border-zinc-200 dark:border-zinc-800 dark:text-zinc-200 text-zinc-800 outline-none"
         />
         <button className="bg-primary w-80 md:w-96 text-center px-3 py-2 rounded-lg text-white ">
           Claim it!
@@ -124,13 +124,10 @@ const User = ({
                   </Link>
                 </li>
               )}
-              {user.channels?.youtubeId && (
+              {user.channels?.youtubeId && user.channel && (
                 <li className="md:pl-0 md:px-4 px-2 py-1 text-sm dark:bg-zinc-800 md:dark:bg-inherit rounded-lg bg-zinc-100  m-0.5 md:w-36 text-zinc-600 dark:text-zinc-200 md:bg-inherit">
                   <Link
-                    href={
-                      "https://www.youtube.com/watch?ab_channel=" +
-                      user.channels.youtubeId
-                    }
+                    href={"https://www.youtube.com/" + user.channel}
                     target="_blank"
                     className="flex flex-row items-center w-full text-xs space-x-2"
                   >
@@ -201,10 +198,35 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     if (user.length < 1) return { props: { user: null } };
     const firstUser = user[0];
 
+    let channel = null;
+    if (firstUser.channels?.youtubeId) {
+      const { data } = await youtubeClient().get("/", {
+        params: {
+          id: firstUser.channels?.youtubeId,
+        },
+      });
+      if (data.items[0]) channel = data.items[0].snippet.customUrl;
+    }
     return {
-      props: { user: { ...firstUser, publishedAt: null } },
+      props: { user: { ...firstUser, publishedAt: null, channel } },
     };
-  } catch (error) {
+  } catch (error: any) {
+    if (error.response) {
+      // The request was made and the server responded with a status code
+      // that falls out of the range of 2xx
+      console.log(error.response.data);
+      console.log(error.response.status);
+      console.log(error.response.headers);
+    } else if (error.request) {
+      // The request was made but no response was received
+      // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+      // http.ClientRequest in node.js
+      console.log(error.request);
+    } else {
+      // Something happened in setting up the request that triggered an Error
+      console.log("Error", error.message);
+    }
+
     return {
       props: { user: null },
     };

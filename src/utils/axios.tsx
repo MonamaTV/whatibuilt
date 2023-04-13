@@ -13,8 +13,8 @@ export const youtubeClient = () => {
     baseURL: "https://youtube.googleapis.com/youtube/v3/channels",
     params: {
       part: "snippet,contentDetails,statistics",
-      mine: true,
-      key: process.env.GOOGLE_API_KEY,
+
+      key: process.env.NEXT_PUBLIC_GOOGLE_API_KEY,
     },
   });
 };
