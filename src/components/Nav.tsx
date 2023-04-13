@@ -1,11 +1,13 @@
 import { signOut } from "next-auth/react";
 import { useTheme } from "next-themes";
 import Link from "next/link";
+
 type NavTypes = {
   handleModal: () => void;
   state: boolean | undefined;
-  handlePublish: () => void;
+  handlePublish: (e: React.MouseEvent<HTMLButtonElement>) => void;
 };
+
 const Nav = ({ handleModal, state, handlePublish }: NavTypes) => {
   const { theme, setTheme } = useTheme();
 
@@ -19,7 +21,7 @@ const Nav = ({ handleModal, state, handlePublish }: NavTypes) => {
         <li>
           <button
             onClick={handlePublish}
-            className="flex flex-row items-center gap-x-2  px-1 md:py-1 dark:text-white text-zinc-800 hover:bg-primary hover:text-gray-100 md:w-24 justify-center transition-colors duration-300 ease-in-out text-xs rounded-lg"
+            className="flex flex-row items-center gap-x-2  px-1 md:py-1 dark:text-white text-zinc-800 hover:bg-primary hover:text-gray-100 md:w-24 justify-center transition-colors duration-300 ease-in-out text-xs rounded-lg disabled:text-zinc-600 disabled:cursor-not-allowed"
           >
             {state ? <span>Unpublish</span> : <span>Publish</span>}
           </button>

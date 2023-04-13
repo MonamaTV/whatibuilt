@@ -6,13 +6,15 @@ export const ToastSuccess = (message: string) =>
       <div
         className={`${
           t.visible ? "animate-enter" : "animate-leave"
-        } max-w-md w-full bg-white shadow-lg pointer-events-auto flex rounded-lg `}
+        } max-w-md w-full bg-white dark:border dark:border-zinc-600 dark:bg-background shadow-lg pointer-events-auto flex rounded-lg `}
       >
         <div className="flex-1 w-0 p-4">
           <div className="flex items-start">
             <div className="ml-3 flex-1">
               <p className="text-sm font-medium text-green-600">Success</p>
-              <p className="mt-1 text-sm text-gray-500">{message}</p>
+              <p className="mt-1 text-sm dark:text-zinc-300 text-zinc-500">
+                {message}
+              </p>
             </div>
           </div>
         </div>
@@ -33,13 +35,15 @@ export const ToastError = (message: string) =>
       <div
         className={`${
           t.visible ? "animate-enter" : "animate-leave"
-        } max-w-md w-full bg-white shadow-lg pointer-events-auto flex rounded-l-lg`}
+        } max-w-md w-full bg-white dark:bg-background dark:border dark:border-zinc-600 shadow-lg pointer-events-auto flex rounded-l-lg`}
       >
         <div className="flex-1 w-0 p-4">
           <div className="flex items-start">
             <div className="ml-3 flex-1">
               <p className="text-sm font-medium text-red-600">Error</p>
-              <p className="mt-1 text-sm text-gray-500">{message}</p>
+              <p className="mt-1 text-sm dark:text-zinc-300 text-zinc-500">
+                {message}
+              </p>
             </div>
           </div>
         </div>

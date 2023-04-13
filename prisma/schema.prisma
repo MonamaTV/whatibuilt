@@ -55,12 +55,15 @@ model User {
 }
 
 model Channels {
-  id        String  @id @default(cuid())
-  githubId  String?
-  youtubeId String?
-  twitchId  String?
-  user      User    @relation(fields: [userID], references: [id])
-  userID    String  @unique
+  id         String  @id @default(cuid())
+  githubId   String?
+  youtubeId  String?
+  twitchId   String?
+  dribbleId  String?
+  hashnodeId String?
+  twitterId  String?
+  user       User    @relation(fields: [userID], references: [id])
+  userID     String  @unique
 }
 
 model Social {

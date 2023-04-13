@@ -3,6 +3,7 @@ import { githubClient, githubTokenClient } from "@/utils/axios";
 import prisma from "@/utils/prisma";
 import { GetServerSidePropsContext } from "next";
 import { getServerSession } from "next-auth";
+import Link from "next/link";
 import React from "react";
 
 const GitHub = () => {
@@ -15,12 +16,18 @@ const GitHub = () => {
         Failed to integrate with GitHub. Please try again...
       </p>
       <div className="flex  flex-row w-42 gap-x-2">
-        <button className="px-3 py-2 capitalize text-sm  text-zinc-300  w-full ">
+        <Link
+          href="/admin"
+          className="px-3 py-2 capitalize text-sm  text-zinc-300  w-full "
+        >
           Go back home
-        </button>
-        <button className="w-32 px-2 py-2 capitalize text-sm  bg-zinc-800 text-gray-100  ">
+        </Link>
+        <Link
+          href="/api/github"
+          className="w-32 px-2 py-2 capitalize text-sm  bg-zinc-800 text-gray-100  "
+        >
           Try again
-        </button>
+        </Link>
       </div>
     </div>
   );

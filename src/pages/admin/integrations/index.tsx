@@ -10,29 +10,29 @@ import prisma from "../../../utils/prisma";
 import Modal from "@/components/Modal";
 import Platforms from "@/components/Socials";
 import { useMutation } from "@tanstack/react-query";
-import { updateChannels } from "@/services/channels";
+import { updateChannels, Channel } from "@/services/channels";
 import { ToastError, ToastSuccess } from "@/components/Toasts/Toasts";
 
 const Integrations = ({ channels }: { channels: Channels }) => {
-  const [modal, setModal] = useState(false);
-  const toggleModal = () => {
-    setModal(!modal);
-  };
-
   const mutation = useMutation({
-    mutationFn: (channel: any) => {
+    mutationFn: (channel: Channel) => {
       return updateChannels(channel);
     },
     onSuccess: () => {
-      ToastSuccess("Removed channel successfully");
+      ToastSuccess("Removed channel");
     },
     onError: () => {
-      ToastError("Couldn't remove channel");
+      ToastError("Failed to remove your channel");
     },
   });
 
-  const disconnectChannel = (channel: any) => {
+  const disconnectChannel = (channel: Channel) => {
     mutation.mutate(channel);
+  };
+
+  const [modal, setModal] = useState(false);
+  const toggleModal = () => {
+    setModal(!modal);
   };
 
   return (
@@ -44,7 +44,7 @@ const Integrations = ({ channels }: { channels: Channels }) => {
         onClick={toggleModal}
         className="text-xs text-zinc-200 bg-primary border-none outline-none rounded-lg px-2 py-1 font-sans absolute right-0 top-3"
       >
-        More
+        Add more
       </button>
       <p className="dark:text-gray-100 text-zinc-700 text-sm">
         Now you can only integrate your YouTube channel, Twitch and GitHub

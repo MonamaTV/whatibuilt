@@ -14,26 +14,21 @@ export default function App({
   ...appProps
 }: AppProps) {
   const routes = ["/admin", "/admin/socials", "/admin/integrations"];
-  if (routes.includes(appProps.router.pathname)) {
-    return (
-      <SessionProvider session={session}>
-        <QueryClientProvider client={queryClient}>
-          <ThemeProvider enableSystem={true} attribute="class">
+  const isAdmin = routes.includes(appProps.router.pathname);
+  return (
+    <SessionProvider session={session}>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider enableSystem={true} attribute="class">
+          {isAdmin ? (
             <AdminLayout>
               <Component {...pageProps} />
             </AdminLayout>
-          </ThemeProvider>
-          <Toaster position="top-center" reverseOrder={false} />
-        </QueryClientProvider>
-      </SessionProvider>
-    );
-  }
-
-  return (
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider enableSystem={true} attribute="class">
-        <Component {...pageProps} />
-      </ThemeProvider>
-    </QueryClientProvider>
+          ) : (
+            <Component {...pageProps} />
+          )}
+        </ThemeProvider>
+        <Toaster position="top-center" reverseOrder={false} />
+      </QueryClientProvider>
+    </SessionProvider>
   );
 }

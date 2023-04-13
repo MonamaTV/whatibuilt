@@ -67,18 +67,19 @@ const AdminLayout = ({ children }: PropsWithChildren) => {
     mutationFn: (state: boolean) => {
       return updateUser({ published: state });
     },
-    onSuccess: () => {
-      ToastSuccess("Successfully published your profile");
+    onSuccess: (data) => {
+      ToastSuccess(data.message);
     },
     onError: () => {
       ToastError("Failed to publish your profile");
     },
   });
 
-  const handlePublishUser = () => {
+  const handlePublishUser = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (session?.data === null) return;
-
+    e.currentTarget.disabled = true;
     updateMutation.mutate(!session?.data.user?.published);
+    e.currentTarget.disabled = false;
   };
 
   return session.data?.user !== null ? (

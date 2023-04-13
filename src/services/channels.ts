@@ -1,10 +1,10 @@
 import { axiosClient } from "@/utils/axios";
-
-export const updateChannels = async (channels: {
-  gitHubId?: string;
-  twitchId?: string;
-  youtubeId?: string;
-}) => {
+export type Channel = {
+  githubId?: string | null;
+  twitchId?: string | null;
+  youtubeId?: string | null;
+};
+export const updateChannels = async (channels: Channel) => {
   const { data } = await axiosClient().put("/channels", channels);
 
   return data;

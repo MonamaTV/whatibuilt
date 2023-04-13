@@ -1,18 +1,13 @@
-import { useScroll } from "@/hooks/useScroll";
 import Image from "next/image";
 import React from "react";
 
 const TwitchContent = () => {
-  const scroll = useScroll();
   return (
     <div className="w-full">
       <h3 className="text-2xl text-gray-500 dark:text-rose-100 font-serif my-2">
         Twitch
       </h3>
-      <div
-        ref={scroll}
-        className="flex flex-row overflow-x-hidden gap-x-2 w-full"
-      >
+      <div className="flex flex-row overflow-x-hidden gap-x-2 w-full">
         <div className="w-48  flex-shrink-0 border border-zinc-800 ">
           <Image src={"/youtube.png"} width={"220"} height={"50"} alt="Tag" />
           <p className="px-2 text-white text-sm capitalize my-1 object-contain">

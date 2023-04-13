@@ -53,42 +53,6 @@ const Dashboard = ({
         user={newUser}
         state={loading}
       />
-      {/* <input
-        name="name"
-        type={"text"}
-        value={userInfo.name}
-        className="w-full  px-3 py-2 dark:bg-zinc-600 outline-none border dark:border-none text-sm dark:text-gray-100 text-gray-700 border-zinc-600"
-        onChange={handleInput}
-        placeholder="Your name"
-      />
-      <input
-        type={"text"}
-        onChange={handleInput}
-        name="role"
-        value={userInfo.role}
-        className="w-full  px-3 py-2 dark:bg-zinc-600 outline-none border dark:border-none text-sm dark:text-gray-100 text-gray-700 border-zinc-600"
-        placeholder="Your role, e.g Software Engineer"
-      />
-      <div className="relative flex">
-        <textarea
-          value={userInfo.bio}
-          onChange={handleInput}
-          name="bio"
-          className="w-full border-zinc-600 px-3 py-3 dark:bg-zinc-600 resize-none outline-none border dark:border-none text-sm dark:text-gray-100 text-gray-700 focus:peer-disabled:block peer "
-          placeholder="Bio"
-          rows={10}
-        ></textarea>
-        <button className="peer-focus:block hidden absolute bottom-2 right-2 px-2 py-2 text-sm bg-primary">
-          Generate bio
-        </button>
-      </div>
-      <button
-        onClick={handleUpdateUser}
-        disabled={loading}
-        className="text-gray-900 px-3 py-2 capitalize text-sm bg-primary  w-44 disabled:bg-zinc-800 disabled:text-zinc-600 disabled:cursor-not-allowed"
-      >
-        Save
-      </button> */}
     </div>
   );
 };
