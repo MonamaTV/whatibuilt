@@ -42,7 +42,7 @@ const AddSocial = ({
         type={"url"}
         required
         className="md:w-96 w-72 mb-2 px-4 py-2 text-sm dark:bg-zinc-600 outline-none dark:border-none border border-zinc-300 dark:text-zinc-100 rounded-lg"
-        placeholder="Paste here..."
+        placeholder={`Paste link here...`}
       />
       {error ? (
         <p className="md:w-96 w-72 text-red-600 text-xs ">{error}</p>

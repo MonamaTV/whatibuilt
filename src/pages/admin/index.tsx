@@ -45,6 +45,7 @@ const Dashboard = ({
       <p className="dark:text-zinc-100 text-sm text-zinc-700">
         These details that will be shown to people who visits your page
       </p>
+
       <p className="w-full border-none dark:border-none text-sm  px-1 py-2 dark:bg-inherit outline-none  dark:text-zinc-300 text-zinc-700">
         {"@" + newUser?.username ?? ""}
       </p>

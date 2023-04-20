@@ -22,7 +22,7 @@ const Login = ({
           <div
             key={provider.id}
             onClick={() => signIn(provider.id)}
-            className="text-zinc-800 px-3 py-3 border border-zinc-300 dark:text-zinc-100 hover:cursor-pointer w-80 md:w-96 text-center text-sm flex items-center space-x-2 justify-center hover:bg-zinc-50 mr-10 ml-10 hover:text-zinc-900 rounded-lg"
+            className="text-zinc-800 px-3 py-3 border border-zinc-300 dark:text-zinc-100 hover:cursor-pointer w-80 md:w-96 text-center text-sm flex items-center space-x-2 justify-center hover:bg-zinc-50 mr-10 ml-10 hover:text-zinc-900 hover:dark:text-zinc-700 rounded-lg"
           >
             <Image
               src={`/${provider.name}.svg`}

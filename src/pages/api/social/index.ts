@@ -53,30 +53,16 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
   if (req.method === "GET") {
     try {
       const session = await getServerSession(req, res, authOptions);
-      //Do I need to verify user?
-      const user = await prisma.user.findUnique({
-        where: {
-          id: session?.user?.id,
-        },
-      });
-
-      if (!user) {
-        return res.status(400).send({
-          message: "User doesn't exist",
-          success: false,
-          code: 400,
-        });
-      }
 
       const socials = await prisma.social.findMany({
         where: {
-          userID: user.id,
+          userID: session?.user?.id,
         },
       });
 
-      res.status(201).json({
+      res.status(200).json({
         message: "Your socials",
-        code: 201,
+        code: 200,
         data: socials,
         success: true,
       });

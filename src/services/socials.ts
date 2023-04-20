@@ -17,8 +17,10 @@ export const removeSocial = async (socialID: string) => {
   return data;
 };
 
-export const getSocials = async () => {
-  const { data } = await axiosClient().get("/social");
+export const getSocials = async (): Promise<Social[] | []> => {
+  const {
+    data: { data },
+  } = await axiosClient().get("/social");
 
   return data;
 };

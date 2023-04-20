@@ -46,4 +46,41 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
       });
     }
   }
+
+  if (req.method === "GET") {
+    try {
+      const session = await getServerSession(req, res, authOptions);
+
+      const user = await prisma.user.findUnique({
+        where: {
+          id: session?.user?.id,
+        },
+        include: {
+          socials: true,
+          channels: true,
+        },
+      });
+
+      if (!user) {
+        return res.status(400).json({
+          message: "User not found",
+          code: 400,
+          success: false,
+        });
+      }
+
+      res.status(200).json({
+        message: "User",
+        code: 200,
+        data: user,
+        success: true,
+      });
+    } catch (error) {
+      res.status(400).json({
+        message: "Failed to fetch user",
+        code: 400,
+        success: false,
+      });
+    }
+  }
 }

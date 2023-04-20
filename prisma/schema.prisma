@@ -62,6 +62,7 @@ model Channels {
   dribbleId  String?
   hashnodeId String?
   twitterId  String?
+  devtoId    String?
   user       User    @relation(fields: [userID], references: [id])
   userID     String  @unique
 }
@@ -72,6 +73,8 @@ model Social {
   url    String
   user   User    @relation(fields: [userID], references: [id])
   userID String
+
+  @@unique([name, userID])
 }
 
 model VerificationToken {
