@@ -12,8 +12,8 @@ const Platforms = ({
   closeModal: () => void;
 }) => {
   const [platforms, setPlatforms] = useState({
-    hashnodeId: channels?.hashnodeId ?? "",
-    devtoId: channels?.devtoId ?? "",
+    hashnodeId: "",
+    devtoId: "",
   });
 
   const handleChannelUpdate = (e: React.ChangeEvent<HTMLInputElement>) => {
