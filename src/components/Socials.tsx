@@ -27,7 +27,7 @@ const Platforms = ({
   };
 
   const mutation = useMutation({
-    mutationFn: (channels: Partial<Channels>) => {
+    mutationFn: (channels: any) => {
       return updateChannels(channels);
     },
     onError: () => {
