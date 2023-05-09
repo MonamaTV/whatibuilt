@@ -39,7 +39,6 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
         code: 200,
       });
     } catch (error) {
-      console.log(error);
       res.status(500).json({
         message: "Error updating channel",
         code: 500,

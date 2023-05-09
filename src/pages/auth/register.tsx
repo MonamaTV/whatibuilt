@@ -4,12 +4,14 @@ import { getProviders, signIn } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { authOptions } from "../api/auth/[...nextauth]";
+import Meta from "@/components/Meta";
 
 const Register = ({
   providers,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   return (
     <div className="h-screen w-screen text-zinc-800 mx-auto flex flex-col justify-center items-center space-y-3 dark:bg-background">
+      <Meta />
       <h1 className="text-5xl font-bold font-serif dark:text-zinc-100">
         WhatIBuilt
       </h1>

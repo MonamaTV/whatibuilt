@@ -12,6 +12,7 @@ import Platforms from "@/components/Socials";
 import { useMutation } from "@tanstack/react-query";
 import { updateChannels, Channel } from "@/services/channels";
 import { ToastError, ToastSuccess } from "@/components/Toasts/Toasts";
+import HashnodeContent from "@/components/HashnodeContent";
 
 const Integrations = ({ channels }: { channels: Channels }) => {
   const mutation = useMutation({
@@ -42,7 +43,7 @@ const Integrations = ({ channels }: { channels: Channels }) => {
       </h3>
       <button
         onClick={toggleModal}
-        className="text-xs text-zinc-200 bg-primary border-none outline-none rounded-lg px-2 py-1 font-sans absolute right-0 top-3"
+        className="text-xs text-zinc-100 bg-primary border-none outline-none rounded-lg px-2 py-1 font-sans absolute right-0 top-3"
       >
         Add more
       </button>
@@ -91,10 +92,11 @@ const Integrations = ({ channels }: { channels: Channels }) => {
           isAdmin={true}
         />
       )}
+      {channels?.hashnodeId && <HashnodeContent />}
 
       {modal && (
         <Modal closeModal={toggleModal}>
-          <Platforms />
+          <Platforms closeModal={toggleModal} channels={channels} />
         </Modal>
       )}
     </div>

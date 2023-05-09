@@ -8,6 +8,7 @@ import { socials } from "@/utils/types";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { youtubeClient } from "@/utils/axios";
+import Meta from "@/components/Meta";
 
 const User = ({
   user,
@@ -24,6 +25,7 @@ const User = ({
   if (!user) {
     return (
       <div className="dark:bg-background min-h-screen min-w-screen flex flex-col justify-center items-center py-10 gap-y-2">
+        <Meta />
         <h1 className="text-5xl font-bold font-serif dark:text-zinc-100">
           WhatIBuilt
         </h1>
@@ -46,6 +48,7 @@ const User = ({
 
   return (
     <div className="dark:bg-background min-h-screen min-w-screen flex flex-col md:justify-center md:items-center py-10">
+      <Meta />
       <div className="container mx-auto md:w-[1200px] flex flex-col md:flex-row md:justify-center  px-4 md:p-10 md:border dark:border-none rounded-lg">
         <div className="lg:w-[20%] md:w-[30%]  flex flex-row md:flex-col w-full mb-3 items-center md:items-start ">
           {user.image && (
@@ -186,7 +189,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     const user = await prisma.user.findMany({
       where: {
         AND: {
-          username: username,
+          username: username.toLowerCase(),
           published: true,
         },
       },

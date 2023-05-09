@@ -24,11 +24,6 @@ const Repo = ({ repo }: { repo: Repos }) => {
       <p className="text-sm dark:text-gray-300 text-gray-500">
         {repo?.description?.slice(0, 100) + "..."}
       </p>
-      {/* {repo.language && (
-        <small className="text-xs text-zinc-400  flex flex-row items-center my-1 gap-x-2">
-          <div className={color.toString()}></div> Written in {repo.language}
-        </small>
-      )} */}
     </div>
   );
 };

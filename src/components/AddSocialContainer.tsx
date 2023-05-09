@@ -73,7 +73,6 @@ const AddSocialContainer = ({
     const social = { name: value, url };
     AddMutation.mutate(social);
     setUrl("");
-    // setData(data.filter((social) => social.value !== value));
   };
 
   return (
@@ -84,7 +83,6 @@ const AddSocialContainer = ({
       >
         Close
       </button>
-
       <AddSocial
         error={error}
         handleAddSocial={handleAddSocial}

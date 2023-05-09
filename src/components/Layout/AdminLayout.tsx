@@ -16,6 +16,7 @@ import Modal from "../Modal";
 import AddSocialContainer from "../AddSocialContainer";
 import { getSocials, removeSocial } from "@/services/socials";
 import { socials as socialsTypes } from "@/utils/types";
+import Meta from "../Meta";
 
 const AdminLayout = ({ children }: PropsWithChildren) => {
   const [file, setFile] = useState<File | undefined>();
@@ -134,6 +135,7 @@ const AdminLayout = ({ children }: PropsWithChildren) => {
 
   return session.data?.user !== null ? (
     <>
+      <Meta />
       <Nav
         publishing={publishState}
         handleModal={toggleModal}
@@ -242,7 +244,7 @@ const AdminLayout = ({ children }: PropsWithChildren) => {
                   <span className="md:block">Integration</span>
                 </Link>
               </li>
-              <li className="md:pl-0 md:px-4 px-2 py-1 text-sm md:w-36 my-1 ">
+              <li className="md:hidden  md:pl-0 md:px-4 px-2 py-1 text-sm md:w-36 my-1 ">
                 <button
                   onClick={toggleSocialModal}
                   className="flex flex-row text-xs text-center dark:text-zinc-200 space-x-2 items-center  text-zinc-900 rounded-lg"
@@ -254,11 +256,11 @@ const AdminLayout = ({ children }: PropsWithChildren) => {
             </ul>
             <button
               onClick={toggleSocialModal}
-              className="hidden text-xs text-center px-2 py-1  bg-primary text-zinc-100 rounded-lg md:w-36 my-1"
+              className="md:block hidden text-xs text-center px-2 py-1  bg-primary text-zinc-100 rounded-lg md:w-36 my-1"
             >
               Add social accounts
             </button>
-            <hr className="hidden h-px my-4 w-2/3 bg-gray-200 border-0 dark:bg-gray-700" />
+            <hr className="hidden md:block h-px my-4 w-2/3 bg-gray-200 border-0 dark:bg-gray-700" />
 
             {socials &&
               socials.map((social, index) => {
@@ -267,7 +269,7 @@ const AdminLayout = ({ children }: PropsWithChildren) => {
                 )?.name;
                 return (
                   <button
-                    onClick={(e) => handleRemoveSocial(e, social.id)}
+                    onClick={(event) => handleRemoveSocial(event, social.id)}
                     key={index}
                     className="hidden disabled:dark:text-zinc-400 disabled:text-zinc-500 disabled:cursor-not-allowed rounded-lg text-xs py-1 px-3 md:block"
                   >

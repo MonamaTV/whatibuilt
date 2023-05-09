@@ -36,7 +36,7 @@ const UserForm = ({ handleSubmit, user, state }: FormProps) => {
             name="bio"
             rows={10}
             as="textarea"
-            className="w-full border-zinc-300 px-3 py-3 dark:bg-zinc-600 resize-none outline-none border dark:border-none text-sm dark:text-zinc-100 text-zinc-700 focus:peer-disabled:block peer  rounded-lg"
+            className="w-full border-zinc-300 px-3 py-3  resize-none outline-none border dark:border-none text-sm dark:bg-zinc-600 dark:text-zinc-100 text-zinc-700 focus:peer-disabled:block peer  rounded-lg"
           />
           {errors.bio && touched.bio ? (
             <p className="text-red-600 text-sm">{errors.bio}</p>
