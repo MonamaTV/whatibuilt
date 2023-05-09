@@ -11,7 +11,7 @@ const Platforms = ({
   channels: Channels;
   closeModal: () => void;
 }) => {
-  const [platforms, setPlatforms] = useState<Partial<Channels>>({
+  const [platforms, setPlatforms] = useState({
     hashnodeId: channels?.hashnodeId ?? "",
     devtoId: channels?.devtoId ?? "",
   });
