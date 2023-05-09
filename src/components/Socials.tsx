@@ -51,7 +51,7 @@ const Platforms = ({
         <input
           type="text"
           name="hashnodeId"
-          value={platforms.hashnodeId!}
+          value={platforms?.hashnodeId!}
           onChange={handleChannelUpdate}
           className="border w-2/3 outline-none dark:border-none border-zinc-100 text-sm rounded-lg px-4 py-2 rounded-r-none dark:bg-zinc-600 dark:text-zinc-100"
           placeholder="Hashnode username"
