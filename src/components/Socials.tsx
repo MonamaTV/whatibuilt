@@ -11,7 +11,7 @@ const Platforms = ({
   channels: Channels;
   closeModal: () => void;
 }) => {
-  const [platforms, setPlatforms] = useState<Partial<Channels>>(channels);
+  const [platforms, setPlatforms] = useState<Channels>(channels);
 
   const handleChannelUpdate = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
