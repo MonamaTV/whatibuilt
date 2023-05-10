@@ -11,10 +11,7 @@ const Platforms = ({
   channels: Channels;
   closeModal: () => void;
 }) => {
-  const [platforms, setPlatforms] = useState({
-    hashnodeId: "",
-    devtoId: "",
-  });
+  const [platforms, setPlatforms] = useState<Partial<Channels>>(channels);
 
   const handleChannelUpdate = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -27,7 +24,7 @@ const Platforms = ({
   };
 
   const mutation = useMutation({
-    mutationFn: (channels: any) => {
+    mutationFn: (channels: Partial<Channels>) => {
       return updateChannels(channels);
     },
     onError: () => {
